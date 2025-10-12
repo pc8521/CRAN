@@ -31,13 +31,13 @@
         >
             <a class="nav-link" href={% url "pages:about" %}>About</a>
         </li>
-        <li if {% if "test" in request.path %}
+        <li if {% if "listings" in request.path %}
                 li class="nav-item active mr-3"
             {% else %}
                 li class="nav-item mr-3"
             {% endif %}
         >
-            <a class="nav-link" href={% url "listings:listings" %}
+            <a class="nav-link" href="#"
             >Inpatient medical services</a
             >
         </li>
