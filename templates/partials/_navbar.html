@@ -44,20 +44,31 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item mr-3">
-            {% comment %} fix {% endcomment %}
-            <a class="nav-link" href="register.html">
-            <i class="fas fa-user-plus"></i> Register</a
-            >
-        </li>
-        <li class="nav-item mr-3">
-            {% comment %} fix {% endcomment %}
-            <a class="nav-link" href="login.html">
-            <i class="fas fa-sign-in-alt"></i>
-
-            Login</a
-            >
-        </li>
+        {% if user.is_authenticated %}
+            <li  {% if 'dashboard' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+                <a class="nav-link" href={% url "accounts:dashboard" %}>
+                welcome {{user.username}} (Dashboard)</a>
+            </li>
+            <!--logout-->
+            <li class="nav-item mr-3">
+                <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+                <form action="{% url 'accounts:logout' %}" method="POST" id="logout">
+                    {% csrf_token %}
+                    <input type="hidden" />
+                </form>
+            </li>
+        {% else %}
+            <li  {% if 'register' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+                <a class="nav-link" href={% url "accounts:register" %}>
+                <i class="fas fa-user-plus"></i> Register</a>
+            </li>
+            <li  {% if 'login' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+                <a class="nav-link" href={% url "accounts:login" %}>
+                <i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+        {% endif %}
         <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#searchModal">
                 <i class="fas fa-search"></i> Search
