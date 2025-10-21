@@ -67,7 +67,8 @@ brand_choices={
 "WristEase":"WristEase",
 "DriveFast":"DriveFast",
 "PadGlow":"PadGlow",
-"CamClear":"CamClear"
+"CamClear":"CamClear",
+"Apple":"Apple",
 }
 
 tag_choices = {

@@ -10,16 +10,26 @@ from django.db.models import Q
 
 def products(request):
     products=Product.objects.filter(is_active=True)
-    
     paginator=Paginator(products,3) 
     page=request.GET.get('page')
-    paged_products=paginator.get_page(page) 
-    context ={"products":paged_products} 
+    paged_products=paginator.get_page(page)
+    categories=Category.objects.all()
+    context ={"products":paged_products,
+            "categories":categories,
+            "brand_choices":brand_choices,
+            "tag_choices":tag_choices
+            } 
     return render(request, 'products/products.html', context)
 
 def product(request, product_id):
+    categories=Category.objects.all()
     product=get_object_or_404(Product, pk=product_id) 
-    context={"product":product}
+    context={
+        'categories': categories,
+        'brand_choices': brand_choices,
+        'tag_choices': tag_choices,
+        'product': product
+        }
     return render(request, 'products/product.html', context)
 
 
@@ -34,7 +44,6 @@ def search(request):
             Q(name__icontains=keywords) |
             Q(brand__icontains=keywords)
         )
-    
     
     category=request.GET.get('category')
     if category:

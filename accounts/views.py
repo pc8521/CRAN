@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse 
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-
+from products.models import Category, Product
+from products.choices import brand_choices, tag_choices
 # Create your views here. 
 
 def register(request): 
@@ -52,5 +53,13 @@ def logout(request):
         auth.logout(request)
     return redirect('pages:index')
 
-def dashboard(request): 
-    return render(request, 'accounts/dashboard.html')
+def dashboard(request):
+    product=Product.objects.all()
+    categories=Category.objects.all()
+    context={
+        'categories': categories,
+        'brand_choices': brand_choices,
+        'tag_choices': tag_choices,
+        'product': product
+        }
+    return render(request, 'accounts/dashboard.html', context)
