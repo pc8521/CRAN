@@ -31,34 +31,116 @@
         >
             <a class="nav-link" href={% url "pages:about" %}>About</a>
         </li>
-        <li if {% if "listings" in request.path %}
+        <li if {% if "products" in request.path %}
                 li class="nav-item active mr-3"
             {% else %}
                 li class="nav-item mr-3"
             {% endif %}
         >
-            <a class="nav-link" href="#"
-            >Inpatient medical services</a
-            >
+            <a class="nav-link" href="{% url 'products:products' %}">Products</a>
         </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item mr-3">
-            {% comment %} fix {% endcomment %}
-            <a class="nav-link" href="register.html">
-            <i class="fas fa-user-plus"></i> Register</a
-            >
-        </li>
-        <li class="nav-item mr-3">
-            {% comment %} fix {% endcomment %}
-            <a class="nav-link" href="login.html">
-            <i class="fas fa-sign-in-alt"></i>
-
-            Login</a
-            >
+        {% if user.is_authenticated %}
+            <li  {% if 'dashboard' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+                <a class="nav-link" href={% url "accounts:dashboard" %}>
+                welcome {{user.username}} (Dashboard)</a>
+            </li>
+            <!--logout-->
+            <li class="nav-item mr-3">
+                <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+                <form action="{% url 'accounts:logout' %}" method="POST" id="logout">
+                    {% csrf_token %}
+                    <input type="hidden" />
+                </form>
+            </li>
+        {% else %}
+            <li  {% if 'register' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+                <a class="nav-link" href={% url "accounts:register" %}>
+                <i class="fas fa-user-plus"></i> Register</a>
+            </li>
+            <li  {% if 'login' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+                <a class="nav-link" href={% url "accounts:login" %}>
+                <i class="fas fa-sign-in-alt"></i> Login</a>
+            </li>
+        {% endif %}
+        <li class="nav-item">
+            <a class="nav-link" href="#" data-toggle="modal" data-target="#searchModal">
+                <i class="fas fa-search"></i> Search
+            </a>
         </li>
         </ul>
     </div>
     </div>
 </nav>
+
+<!-- Search Modal -->
+<div class="modal fade" id="searchModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <form action="{% url 'products:search' %}">
+                <div class="form-group">
+                    <div class="col-md-12 mb-3">
+                        <label class="sr-only">Category</label>
+                        <input
+                        type="text"
+                        name="keywords"
+                        class="form-control"
+                        placeholder="Keyword (Name, Brand, Description, etc)"
+                        value="{{values.keywords}}"
+                        />
+                    </div>
+                <div class="col-md-12 mb-3">
+                    <label class="sr-only">Category</label>
+                    <select name="category" class="form-control">
+                    <option {% if not values.category %} selected {% endif %} value=''> 
+                        Category (All)
+                    </option>
+                    {% for category in categories %}
+                    <option value="{{category.name}}" {% if category.name == values.category %} selected {% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="sr-only">Brand</label>
+                    <select name="brand" class="form-control">
+                    <option {% if not values.brand %} selected {% endif %} value=''>Brand (All)
+                    </option>
+                    {% for key, value in brand_choices.items %}
+                    <option value="{{key}}" {% if key == values.brand %} selected {% endif %} > {{value}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label class="sr-only">Tag</label>
+                    <select name="tag" class="form-control" id="type">
+                    <option {% if not values.tag %} selected {% endif %} value=''>
+                        Tag (All)
+                    </option>
+                    {% for key,value in tag_choices.items %}
+                    <option value="{{key}}" {% if key == values.tag %} selected {% endif %} >{{value}}</option>
+                    {% endfor %}  
+                    </select>
+                </div>
+            </div>
+            <hr />
+            <input
+            type="submit"
+            value="Send"
+            class="btn btn-block btn-secondary"
+            />
+        </form>
+        </div>
+    </div>
+    </div>
+</div>

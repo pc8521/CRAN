@@ -56,6 +56,7 @@ APPLICATION_APPS = [
     'products.apps.ProductsConfig',
     'wishlist.apps.WishlistConfig',
     'checkout.apps.CheckoutConfig',
+    'stores.apps.StoresConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + APPLICATION_APPS
