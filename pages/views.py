@@ -12,7 +12,7 @@ context={
         'categories': categories,
         'brand_choices': brand_choices,
         'tag_choices': tag_choices,
-        'product': product
+        'products': product
         }
 
 def index(request):
