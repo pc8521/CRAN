@@ -9,7 +9,7 @@ from django.db.models import Q
 
 
 def products(request):
-    products=Product.objects.filter(is_active=True)
+    products=Product.objects.all().filter(is_active=True)
     paginator=Paginator(products,3) 
     page=request.GET.get('page')
     paged_products=paginator.get_page(page)
