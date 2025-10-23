@@ -118,71 +118,14 @@
             <div class="row py-2 text-secondary">
                 <div class="col-12"><i class="fas fa-user"></i> {{product.category.description}}</div>
             </div>
-            <div class="row text-secondary pb-2">
-                <div class="col-12">
-                <i class="fas fa-clock"></i> Reservation required
-                </div>
-            </div>
-            </ul>
-            </div>
-            <div class="col-md-6">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item text-secondary">
-                <i class="fas fa-th-large"></i> Restrooms:
-                <span class="float-right">Have</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                <i class="fas fa-square"></i> Specialized Care:
-                <span class="float-right">No</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                <i class="fas fa-calendar"></i> Preventative Services:
-                <span class="float-right">Have</span>
-                </li>
-                <li class="list-group-item text-secondary">
-                <i class="fas fa-bed"></i> Minor Surgical Procedures:
-                <span class="float-right">No</span>
-                </li>
             </ul>
             </div>
         </div>
 
-        <!-- professional -->
-            <div class="row mb-5">
-            <h4 class="mr-3 text-secondary">SKU: </h4>
-            {% if listing.sku.all %}  <!-- Check if there are any professionals -->
-            <ul>
-            {% for sku in product.sku.all %}
-            <!--- Access fields from the Subject model (e.g., name)  -->
-            <li class="mr-3"><h4>{{ professional.name}}</h4></li>
-            {% endfor %}
-            </ul>
-            {% else %}
-            <h4> No Professionals </h4>
-            {% endif %}
-            </div>
-
-        <!-- services -->
-            <div class="row mb-5">
-            <h4 class="mr-3 text-secondary">Services: </h4>
-            {% if listing.services.all %}  <!-- Check if there are any services -->
-            <ul>
-            {% for professional in listing.services.all %}
-            <!--- Access fields from the Subject model (e.g., name)  -->
-            <li class="mr-3"><h4>{{ services.name}}</h4></li>
-            {% endfor %}
-            </ul>
-            {% else %}
-            <h4> No Services </h4>
-            {% endif %}
-            </div>
-
-
-
 
         <!-- Description -->
         <div class="row mb-5">
-            <div class="col-md-12">{{listing.description}}
+            <div class="col-md-12">{{product.description}}
             
             </div>
         </div>

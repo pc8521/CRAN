@@ -23,6 +23,7 @@
                     name="first_name"
                     class="form-control"
                     value="{{ request.POST.first_name|default:'' }}"
+                    placeholder="Your First Name"
                     required
                 />
                 </div>
@@ -33,6 +34,7 @@
                     name="last_name"
                     class="form-control"
                     value="{{ request.POST.last_name|default:'' }}"
+                    placeholder="Your Last Name"
                     required
                 />
                 </div>
@@ -43,6 +45,7 @@
                     name="username"
                     class="form-control"
                     value="{{ request.POST.username|default:'' }}"
+                    placeholder="Your Username (e.g., ryan_chan)"
                     required
                 />
                 </div>
@@ -53,6 +56,7 @@
                     name="email"
                     class="form-control"
                     value="{{ request.POST.email|default:'' }}"
+                    placeholder="Your Email Address"
                     required
                 />
                 </div>
@@ -62,6 +66,7 @@
                     type="password"
                     name="password"
                     class="form-control"
+                    placeholder="Your Password"
                     required
                 />
                 </div>
@@ -71,6 +76,7 @@
                     type="password"
                     name="password2"
                     class="form-control"
+                    placeholder="Confirm Your Password"
                     required
                 />
                 </div>
