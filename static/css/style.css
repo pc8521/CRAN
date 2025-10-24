@@ -9,15 +9,15 @@ img {
 
 .navbar {
   opacity: 0.9;
-  text-transform: uppercase; }
+  text-transform: none; }
 
 .social a {
   margin-right: 0.4rem; }
 
-#showcase {
-  background: url(../img/showcase.jpg) no-repeat center/cover fixed;
+#frontpage {
+  background: url(../img/backgroundcran.jpg) no-repeat center/cover fixed;
   position: relative;
-  min-height: 650px;
+  min-height: 1000px;
   color: #fff;
   padding-top: 6rem; }
   #showcase .home-search {
@@ -31,11 +31,30 @@ img {
     left: 0;
     min-height: 400px;
     width: 100%;
+    background: rgba(51, 51, 51, 0.8); } 
+
+#showcase {
+  background: url(../img/backgroud3.jpg) no-repeat center/cover fixed;
+  position: relative;
+  min-height: 1000px;
+  color: #ffffff;
+  padding-top: 1rem; }
+  #showcase .home-search {
+    min-height: 200px;
+    position: relative;
+    border-radius: 5px; }
+  #showcase .overlay {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 200px;
+    width: 70%;
     background: rgba(51, 51, 51, 0.8); }
 
 #services {
-  background: url(../img/building.jpg) no-repeat top center/cover fixed;
-  min-height: 300px;
+  background: url(../img/background1.jpg) no-repeat top center/cover fixed;
+  min-height: 150px;
   position: relative;
   overflow: hidden; }
   #services::before {
@@ -45,10 +64,10 @@ img {
     left: 0;
     min-height: 100%;
     width: 100%;
-    background: rgba(32, 134, 107, 0.8); }
+    background: rgba(214, 116, 210, 0.8); }
 
 #showcase-inner {
-  background: url(../img/building.jpg) no-repeat top center/cover fixed;
+  background: url(../img/backgroud2.jpg) no-repeat top center/cover fixed;
   position: relative;
   overflow: hidden;
   min-height: 200px; }
@@ -59,7 +78,7 @@ img {
     left: 0;
     min-height: 100%;
     width: 100%;
-    background: rgba(32, 134, 107, 0.8); }
+    background: rgba(24, 245, 17, 0.8); }
   #showcase-inner.showcase-search {
     min-height: 270px; }
 
