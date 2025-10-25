@@ -17,6 +17,10 @@
     
 
     <title>Science Park Shop {% block title %} {% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+
   </head>
   
   <body>
@@ -32,37 +36,40 @@
     <script src={% static 'js/lightbox.min.js' %}></script>
     <script src={% static 'js/main.js' %}></script>
     <script src={% static 'js/modal.js' %}></script>
-    
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    {% comment %} <script src="https://unpkg.com/htmx.org@1.9.10"></script> {% endcomment %}
+
+    <div id="toast" class="fixed bottom-6 right-6 bg-pink-100 text-pink-800 px-4 py-2 rounded shadow-lg hidden transition-opacity duration-300">
+  Added to cart!
+</div>
+
   </body>
+
+
+  {% comment %} <script src="https://unpkg.com/htmx.org@1.9.10"></script> {% endcomment %}
+
+<script>
+  document.body.addEventListener('htmx:afterRequest', function(evt) {
+    const toast = document.getElementById('toast');
+    if (toast) {
+      toast.classList.remove('hidden');
+      toast.classList.add('opacity-100');
+
+      // Optional: play sound
+      const audio = new Audio('/static/sounds/add-to-cart.mp3');
+      audio.play();
+
+      // Hide after 2 seconds
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('opacity-100');
+      }, 2000);
+    }
+  });
+</script>
 
   
 </html>
 
-<img src="{% static 'images/balloon-pink.png' %}" class="balloon" style="left: 10%;" />
-<img src="{% static 'images/balloon-blue.png' %}" class="balloon" style="left: 40%;" />
-<img src="{% static 'images/balloon-lilac.png' %}" class="balloon" style="left: 70%;" />
-
-<div class="ribbon">🎁 Holiday Boutique Special — Free Shipping All Week! 🎁</div>
-
-<div class="star" style="top: 20%; left: 30%;"></div>
-<div class="star" style="top: 50%; left: 60%;"></div>
-<div class="star" style="top: 80%; left: 10%;"></div>
-
-<img src="{% static 'images/balloon-pink.png' %}" class="balloon" style="left: 10%;" />
-<img src="{% static 'images/balloon-blue.png' %}" class="balloon" style="left: 40%;" />
-<img src="{% static 'images/balloon-lilac.png' %}" class="balloon" style="left: 70%;" />
-
-<canvas id="confetti-canvas"></canvas>
-
-
-<div class="star" style="top: 20%; left: 30%;"></div>
-<div class="star" style="top: 50%; left: 60%;"></div>
-<div class="star" style="top: 80%; left: 10%;"></div>
-
-<button onclick="toggleMusic()">🎶 Toggle Music</button>
-<audio id="holiday-music" src="{% static 'audio/holiday.mp3' %}" loop></audio>
-
-
-<div id="countdown"></div>
 
 

@@ -1,27 +1,39 @@
-from django.shortcuts import render, get_object_or_404
-from django.shortcuts import redirect
-
-from .models import Category, Product 
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Category, Product
+from cart.models import CartItem
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from . choices import brand_choices, tag_choices
 from django.db.models import Q
+
+
 # Create your views here.
 
+def products(request, category_id=None):
+    # Determine category from path or query string
+    category_id = category_id or request.GET.get('category')
 
-def products(request):
-    products=Product.objects.filter(is_active=True)
-    
-    paginator=Paginator(products,3) 
-    page=request.GET.get('page')
-    paged_products=paginator.get_page(page) 
-    context ={"products":paged_products} 
+    # Filter products by category if provided
+    if category_id:
+        product_list = Product.objects.filter(category_id=category_id)
+    else:
+        product_list = Product.objects.all()
+
+    # Paginate the filtered product list
+    paginator = Paginator(product_list, 3)  # Show 3 products per page
+    page_number = request.GET.get('page')
+    paged_products = paginator.get_page(page_number)
+
+    context = {
+        "products": paged_products,
+        "category_id": category_id,
+    }
     return render(request, 'products/products.html', context)
+
 
 def product(request, product_id):
     product=get_object_or_404(Product, pk=product_id) 
     context={"product":product}
     return render(request, 'products/product.html', context)
-
 
 def search(request):
     queryset_list=Product.objects.order_by('-price')
@@ -34,7 +46,6 @@ def search(request):
             Q(name__icontains=keywords) |
             Q(brand__icontains=keywords)
         )
-    
     
     category=request.GET.get('category')
     if category:
@@ -70,13 +81,7 @@ def store(request):
         return redirect('products:products')  # or wherever you want to go
 
 
-
-
-
-
-
-
-
+    
 # def categories(request):
 #     categories = Category.objects.all()
 #     return render(request, 'pages/categories.html', {'categories': categories})

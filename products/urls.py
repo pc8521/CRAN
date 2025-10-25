@@ -1,14 +1,19 @@
 
-from django.urls import path
 from . import views
+from django.contrib import admin
+from django.urls import path, include
+from debug_toolbar.toolbar import debug_toolbar_urls
+from django.conf import settings
+from django.conf.urls.static import static
 
-app_name = 'listings'
+app_name = 'products'
 
 urlpatterns = [
-    path('', views.products, name='products'),
-    path('<int:product_id>', views.product, name='product'),
-    path('search', views.search, name='search'),
-    #path('', views.categories, name='categories'),
-    #path('categories/<int:category_id>/products/', views.products, name='products'),
-    path('products/<int:category_id>/', views.products, name='products'),
+    path('products/', views.products, name='products'),  # List view
+    path('products/<int:product_id>/', views.product, name='product'),  # Detail view
+    path('search/', views.search, name='search'),
+    path('products/category/<int:category_id>/', views.products, name='products_by_category'),
+    #path('product/<int:product_id>', views.product, name='product'),
+    #path('add-to-cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
 ]
+

@@ -16,39 +16,11 @@ def index(request):
 
     return render(request, 'pages/index.html', context)
 
-# # Search view
-# def search_view(request):
-#     products = Product.objects.all()
-
-#     category_id = request.GET.get("category")
-#     brand = request.GET.get("brand")
-#     tag = request.GET.get("tag")
-
-#     if category_id and category_id.isdigit():
-#         products = products.filter(category_id=int(category_id))
-#     if brand:
-#         products = products.filter(brand=brand)
-#     if tag:
-#         products = products.filter(tag=tag)
-
-#     categories = Category.objects.all()
-
-#     context = {
-#         "products": products,
-#         "categories": categories,
-#         "brand_choices": brand_choices,
-#         "tag_choices": tag_choices,
-#     }
-
-#     return render(request, "products/search.html", context)
-
-
-
-
 def categories(request):
     categories = Category.objects.all()
     return render(request, 'pages/categories.html', {'categories': categories})
 
-
+def signup(request):
+     return render(request, 'pages/signup.html')
 
 

@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% load static %}
+
+<!-- load humanize -->
+{% load humanize %}
+{% block content %} 
+<div class="max-w-lg mx-auto flex flex-wrap p-6">
+   <div class="w-full bg-gray-100 p-6 rounded-xl">
+     <h1 class="mb-6 text-2xl">Sign up</h1>
+
+     <form method="post" action=".">
+       <div>
+         <label>E-mail</label>
+         <input type="email" class="w-full mt-2 py-4 pc-6 bg-white rounded-xl">
+      </div>
+    </form>  
+</div>
+
+
+</div>
+{% endblock %}

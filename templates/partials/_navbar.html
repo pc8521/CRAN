@@ -3,5 +3,18 @@
    
     <a class="nav-link" href="{% url 'pages:categories' %}">Shop</a>
     
+   {% comment %} <a href="{% url 'cart:cart_summary' %}" class="btn btn-outline-dark">
+    <i class="bi-cart-fill me-1"></i>
+    Cart
+   <span class="badge bg-dark text-white ms-1 rounded-pill" 
+   id="cart_quantity">{{ cart|length }} 
+   </span></a> {% endcomment %}
+
+
+  {% include 'cart/menu_cart.html' %}
+
+
+
+
   </div>
 </nav>

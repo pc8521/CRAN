@@ -55,6 +55,8 @@
               <div class="card-body">
                 <div class="listing-heading text-center">
                   <h4 class="text-primary">{{product.name}}</h4>
+
+
                   <p>
                     <i class="fas fa-map-marker text-secondary"></i> {{product.category | title}}                  
                   </p>
@@ -91,8 +93,11 @@
                 </div>
                 <hr />
                 {% comment %} listing - done {%endcomment %}
-                <a href={% url "listings:listing" listing.id %} class="btn btn-primary btn-block"
-                  >Add to cart</a
+
+
+
+                <a href={% url "products:product" product.id %} class="btn btn-primary btn-block"
+                  >More information</a
                 >
               </div>
             </div>
@@ -110,10 +115,12 @@
           <div class="col-md-12">
             {% if products.has_other_pages %} 
             <!-- check if any data first, say only 3 clinic, no need paginator -->
-            <ul class="pagination">
+            
+<ul class="pagination">
               {% if products.has_previous %}
               <li class="page-item">
                 <a class="page-link" href="?page={{products.previous_page_number}}">&laquo;</a> 
+                <!-- page here is a variable, listings.previous_page_number is a value -->
               </li>   
               {% else %}
               <li class="page-item disabled">
@@ -128,6 +135,7 @@
               {% else %}
               <li class="page-item">
                 <a class="page-link" href="?page={{i}}">{{i}}</a> 
+                <!-- first {{i}} is the page send back to backend, second {{i}} ipage here is a variable, listings.previous_page_number is a value -->
               </li>  
               {% endif %}
               {% endfor %}
