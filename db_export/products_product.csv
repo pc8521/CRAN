@@ -1,0 +1,4 @@
+id,sku,name,description,price,stock,category,is_active,tag,brand,product_img,product_img1,product_img2
+1,mp-ip17px-1tb,iPhone 17 Pro Max (1TB),iPhone 17 Pro Max (1TB),19999.00,10,Mobile Phones,True,New,Apple,photos/2025/10/21/initial__fo4stdzx5uy6_large.jpg,products/default.jpg,products/default.jpg
+2,PC-LENO-16G,Lenovo NUC 16GB RAM,AMD Zen 5 16GB RAM 1TB SSD,8999.00,5,Computers,True,New,Nature's Bite,photos/2025/10/22/download.jpeg,products/default.jpg,products/default.jpg
+3,POCO-F7-512,POCO F7 (512GB),POCO F7 (512GB),2499.00,10,Mobile Phones,True,Sale,Nature's Bite,products/default.jpg,products/default.jpg,products/default.jpg
