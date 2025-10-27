@@ -34,7 +34,7 @@ def product(request, product_id):
 
 
 def search(request):
-    queryset_list=Product.objects.order_by('-price')
+    queryset_list=Product.objects.order_by('-id')
     
     keywords=request.GET.get('keywords')
     if keywords:

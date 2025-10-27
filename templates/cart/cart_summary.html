@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% comment %} {% extends 'base.html' %}
+{% load humanize %}
+
+{% block title %} | {{listing.title}} {% endblock title %}
+{% block content %} {% load static %} 
+
+
+
+<div class="bg-dark py-5">
+
+             <a href="#" class="mt-6 inline-block px-8 py-4 rounded-xl bg-purpose-500 
+text-white hover:bg-purple-700"> Add to cart
+</a>
+             </p>
+            </div>
+          </div>
+    </div> {% endcomment %}
+
+
+
+{% load humanize %}
+{% load static %}
+
+{% block title %} | {{ cart.product }} {% endblock title %}
+
+{% block content %}
+<div class="bg-dark py-5">
+    <a href="#" class="mt-6 inline-block px-8 py-4 rounded-xl bg-purpose-500 
+    text-white hover:bg-purple-700">Add to cart</a>
+</div>
+{% endblock %}
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load humanize %} {% load static %} 
+{% block title %} | {{product.name}} {% endblock title %}
+{% block content %} 
+
+    <header class="bg-dark py-5">
+         <div class="container px-4 px-lg-5 my-5">
+           <div class="text-center text-white">
+             <h1 class="display-4 fw-bolder">
+             Shopping Cart </h1>
+             <p class="lead fw-normal
+             text-white-50 mb=0">View Your Cart...
+             </p>
+            </div>
+          </div>
+    </header>
+    <br/>
+    <div class="container">
+      {% if cart_products %}
+          {% for product in cart_products %}
+           
+</a>
+        <div class="row">
+          <div class="col-md-9">
+            
+
+{% if product.product_img and product.product_img.url %}
+  <img src="{{ product.product_img.url }}" alt="{{ product.name }}" class="img-main img-fluid mb-3" />
+{% else %}
+  <img src="{% static 'img/default.jpg' %}" alt="Default image" class="img-main img-fluid mb-3" />
+{% endif %}
+
+            <!-- Thumbnails -->
+                        <!-- Fields -->
+            <div class="row mb-5 fields">
+              <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                  <div class="row py-2 text-secondary">
+                  <div class="col-6"><i class="fas fa-th-large"></i> Description {{product.description}}</div>
+                  <div class="col-6"><i class="fas fa-dumbbell"></i> Brand {{liproduct.brand}}</div>
+                </div>
+                <div class="row py-2 text-secondary">
+                  <div class="col-6"><i class="fas fa-bed"></i> Price {{product.price}}</div>
+                  <div class="col-6"><i class="fas fa-bath"></i> Tag {{product.tag}}</div>
+                </div>
+                <hr />
+                <div class="row py-2 text-secondary">
+                  <div class="col-12"><i class="fas fa-user"></i> {{product.category.description}}</div>
+                </div><br/>
+                <button type="button" data-index="{{product.id}}"
+                class="btn btn-secondary update_cart">Update</button>
+
+
+
+
+          {% endfor %}
+          {% else %}
+          There's Nothing In Your Cart...
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    </div>
+{% endif %}
+
+{% endblock %} {% endcomment %}

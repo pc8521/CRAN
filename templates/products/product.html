@@ -22,7 +22,7 @@
         <ol class="breadcrumb">
         <li class="breadcrumb-item">
         
-            <a href={% url 'pages:index' %}>Home</a>
+            <a href={% url 'pages:home' %}>Home</a>
         </li>
         <li class="breadcrumb-item">
         
@@ -34,6 +34,13 @@
     </nav>
     </div>
 </section>
+
+
+
+
+
+
+
 
 <!-- Listing -->
 <section id="product" class="py-4">
@@ -67,14 +74,7 @@
 {% else %}
 <img src="{% static 'img/default.jpg' %}" alt="Default image" class="img-main img-fluid mb-3" />
 {% endif %}
-
-
-
-
-
-
-
-            </a>
+</a>
             </div>
             {% endif %}
 
@@ -118,20 +118,79 @@
             <div class="row py-2 text-secondary">
                 <div class="col-12"><i class="fas fa-user"></i> {{product.category.description}}</div>
             </div>
+            <div class="row text-secondary pb-2">
+                <div class="col-12">
+                <i class="fas fa-clock"></i> Reservation required
+                </div>
+            </div>
+            </ul>
+            </div>
+            <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-secondary">
+                <i class="fas fa-th-large"></i> Restrooms:
+                <span class="float-right">Have</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                <i class="fas fa-square"></i> Specialized Care:
+                <span class="float-right">No</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                <i class="fas fa-calendar"></i> Preventative Services:
+                <span class="float-right">Have</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                <i class="fas fa-bed"></i> Minor Surgical Procedures:
+                <span class="float-right">No</span>
+                </li>
             </ul>
             </div>
         </div>
 
+        <!-- professional -->
+            <div class="row mb-5">
+            <h4 class="mr-3 text-secondary">SKU: </h4>
+            {% if listing.sku.all %}  <!-- Check if there are any professionals -->
+            <ul>
+            {% for sku in product.sku.all %}
+            <!--- Access fields from the Subject model (e.g., name)  -->
+            <li class="mr-3"><h4>{{ professional.name}}</h4></li>
+            {% endfor %}
+            </ul>
+            {% else %}
+            <h4> No Professionals </h4>
+            {% endif %}
+            </div>
+
+        <!-- services -->
+            <div class="row mb-5">
+            <h4 class="mr-3 text-secondary">Services: </h4>
+            {% if listing.services.all %}  <!-- Check if there are any services -->
+            <ul>
+            {% for professional in listing.services.all %}
+            <!--- Access fields from the Subject model (e.g., name)  -->
+            <li class="mr-3"><h4>{{ services.name}}</h4></li>
+            {% endfor %}
+            </ul>
+            {% else %}
+            <h4> No Services </h4>
+            {% endif %}
+            </div>
+
+
+
 
         <!-- Description -->
         <div class="row mb-5">
-            <div class="col-md-12">{{product.description}}
+            <div class="col-md-12">{{listing.description}}
             
             </div>
         </div>
         </div>
         <div class="col-md-3">
         <div class="card mb-3">
+            
+            {% comment %} kyle.jpg {% endcomment %}
             <img
             class="card-img-top" 
             src={{product.category.category_img.url}}
@@ -149,9 +208,83 @@
         >
             Make An Inquiry
         </button>
+
+<button
+class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-500 text-white hover:bg-purple-700 border-2 border-purple-600 transition-colors duration-300"
+hx-get="{% url 'cart:add_to_cart' product.id %}"
+hx-target="#menu-cart-button"
+hx-swap="outerHTML">
+Add to cart
+</button>
         </div>
     </div>
     </div>
 </section>
+
+<!-- Inquiry Modal secure focus on payment submission, avoid clicking other stuff (with modal, other link all disabledm user can only work on model fields) on background force you complete the task--> 
+<div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+        <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+            <form action="#" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{product.id}}" /> <!-- hide listing_id as user no need to see -->
+            <input type="hidden" name="store_email" value="{{stores.email}}" /> <!-- hide listing_id as user no need to see, listing relate to doctor and doctor has email-->
+            
+            {% if user.is_authenticated %}
+            <input type="hidden" name="user_id" value="{{user.id}}"/>
+            {% else %}
+            <input type="hidden" name="user_id" value="0" /> <!-- data id start from 1, so setting 0 mean it is not a database id, cannot eg 999 , set 0 no need to let user know-->
+            {% endif %}
+            <div class="form-group">
+            <label for="store" class="col-form-label" >Shop:</label>
+            <input
+                type="text"
+                name="product"
+                class="form-control"
+                value="{{product.name}}"
+                readonly
+            />
+            </div>
+            <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <input type="text" name="name" class="form-control" 
+            {% if user.is_authenticated %}
+            value="{{user.first_name}} {{user.last_name}}" readonly
+            {% endif %} />
+            </div>
+            <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" name="email" class="form-control" 
+            {% if user.is_authenticated %}
+            value="{{user.email}}" readonly
+            {% endif %} />
+            
+        
+            </div>
+            <div class="form-group">
+            <label for="phone" class="col-form-label">Phone:</label>
+            <input type="text" name="phone" class="form-control" />
+            </div>
+            <div class="form-group">
+            <label for="message" class="col-form-label">Message:</label>
+            <textarea name="message" class="form-control"></textarea>
+            </div>
+            <hr />
+            <input
+            type="submit"
+            value="Send"
+            class="btn btn-block btn-secondary"
+            />
+        </form>
+        </div>
+    </div>
+    </div>
 </div>
 {% endblock %}

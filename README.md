@@ -12,3 +12,8 @@ git add products/models.py
 git commit -m "update products/views.py"
 git push origin <your branch>
 ```
+
+DB Tool for import / export category & prodcuts
+```bash
+python manage.py db_tool
+```
