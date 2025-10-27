@@ -1,68 +1,157 @@
-{% extends "base.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 <!-- load humanize --> 
 {% load humanize %} 
 {% block content %}
 {% load static %}
-{% include "partials/_alert.html" %}
 
-<!-- Products -->
-<section id="Products" class="py-4">
-    <div class="container">
-    <h3 class="text-left mb-3">Our Products</h3>
+
+{% comment %} <div class="background-container">
+    <img src="{% static 'img/backgroundcran.jpg' %}" 
+        alt="Background image" 
+        class="background-image">
+</div> {% endcomment %}
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+        
+        .background-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover;
+        }
+        
+        .content-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .col-md-8 {
+            width: 66.666667%;
+            max-width: 800px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            padding: 30px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Fallback for browsers that don't support video */
+        .no-video .background-video {
+            display: none;
+        }
+        
+        .no-video .background-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);
+            z-index: -1;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .col-md-8 {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+
+<a href={% url "pages:home" %}>
+<div class="background-container">
     <div class="row">
-    <!-- Product 1 -->
-    {% if products %} 
-    {% for product in products %} 
-    
-    <div class="col-md-6 col-lg-4 mb-4">
-    <div class="card listing-preview">
-    {% if product.product_img and product.product_img.url %}
-    <img class="card-img-top" src="{{ product.product_img.url }}" alt="{{ product.name }}" />
-    {% else %}
-    <img class="card-img-top" src="{% static 'img/default.jpg' %}" alt="Default image" />
-    {% endif %}
+        <div class="col-md-8 offset-md-2" style="border: 1px solid black">
+            <div class="content-container">
 
-    <div class="card-img-overlay">
-    </div>
-    <div class="card-body">
-    <div class="listing-heading text-center">
-        <h4 class="text-primary">{{product.name}}</h4>
-        <p>
-        <i class="fas fa-map-marker text-secondary"></i> {{product.category | title}}                  
-        </p>
-    </div>
-    <hr />
-    <div class="row py-2 text-secondary">
-        <div class="col-6">
-        
-        <i class="fa-sharp fa-regular fa-coins"></i> Price {{product.price}}
-        </div>
-        <div class="col-6">
-        <i class="nf-fa-coins"></i> Description {{product.description}} 
-        </div>
-    </div>
-    <div class="row py-2 text-secondary">
-        <div class="col-6">
-        <i class="fa-light fa-star-shooting"></i> Brand {{product.brand}}
-        
-        </div>
-        <div class="col-6">
-        <i class="fas fa-bath"></i> Tag {{product.tag}}
-        </div>
-    </div>
-    <hr />
-    <a href={% url "products:product" product.id %} class="btn btn-primary btn-block">
-        More Info</a>
-    </div>
-    </div>
-    </div>
-    {% endfor %}
-    {% else %}
-    <div class="col-md-12">
-        <p>No Product Available</p>
-    </div>
-    {% endif %}
-    </div>
-</section>
+<!-- For video background -->
+    <video autoplay muted loop playsinline class="background-video">
+        <source src="{% static 'img/frontpage.mp4' %}" type="video/mp4"
+        alt="Background video">
+    </video>
+</div>
+</div>
+</div>
+</a>
+
+
 
 {% endblock %}
