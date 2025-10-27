@@ -1,4 +1,5 @@
 id,name,description,category_img
-1,Computers,Computers,products/default.jpg
-2,Services,Services,products/default.jpg
-3,Mobile Phones,Mobile Phones,products/default.jpg
+4,清潔用品,,products/default.jpg
+5,廚房用品,,products/default.jpg
+6,居家收納,,products/default.jpg
+7,個人護理,,products/default.jpg

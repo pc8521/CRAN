@@ -24,8 +24,14 @@ class ProductAdminForm(forms.ModelForm):
             'category', 'is_active', 'tag', 'brand',
             'product_img','product_img1',
             'product_img2',]
+        
 
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
-
+    list_display = 'id', 'name', 'price', 'stock', 'category', 'brand', 'tag', 'is_active'
+    list_editable = 'price', 'stock', 'brand', 'tag', 'is_active'
+    search_fields = 'name', 'description', 'category__name', 'tag__name', 'brand__name'
+    list_per_page = 25
+    ordering = ['id']
+    
 admin.site.register(Product, ProductAdmin)
