@@ -181,7 +181,7 @@
     <div class="container text-center <small class="text-muted"></small>">
     <div class="home-search p-4">
         <div class="overlay p-4">
-        <h1 class="text-screen">Enjoy Selection</h1>
+        <h1 class="text-screen">Search</h1>
         <p class="lead">
 
         </p>
@@ -196,44 +196,43 @@
                     type="text"
                     name="keywords"
                     class="form-control"
-                    placeholder="Keyword (Clinic, Doctor, City name, Town name, etc)"
+                    placeholder="Keyword (Name, Brand, Description, etc)"
                 />
                 </div>
             </div>
             <!-- Form Row 2 -->
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                <label class="sr-only">District</label>
-                <select name="district" class="form-control">
-                    <option selected="true" value = "">
-                    District (All) 
+                <label class="sr-only">Category</label>
+                <select name="category" class="form-control">
+                    <option {% if not values.category %} selected {% endif %} value=''> 
+                        Category (All)
                     </option>
-                    {% for key,value in district_choices.items %}
-                    <option value="{{key}}">{{value}}</option>
+                    {% for category in categories %}
+                    <option value="{{category.name}}" {% if category.name == values.category %} selected {% endif %}>{{ category.name }}</option>
                     {% endfor %}
-
-                </select>
+                    </select>
                 </div>
                 <div class="col-md-4 mb-3">
-                <label class="sr-only">Rooms</label>
-                <select name="rooms" class="form-control">
-                    <option selected="true" value=''>
-                    Rooms (All)
+                <label class="sr-only">Brand</label>
+                    <select name="brand" class="form-control">
+                    <option {% if not values.brand %} selected {% endif %} value=''>Brand (All)
                     </option>
-                    {% for key,value in rooms_choices.items %}
-                    <option value="{{key}}">{{value}}</option>
+                    {% for key, value in brand_choices.items %}
+                    <option value="{{key}}" {% if key == values.brand %} selected {% endif %} > {{value}}</option>
                     {% endfor %}
-                </select>
+                    </select>
                 </div>
                 <div class="col-md-4 mb-3">
-                <select name="price" class="form-control" id="type">
-                    <option selected="true" value=''>
-                    Room Types (All)
+                <label class="sr-only">Tag</label>
+                    <select name="tag" class="form-control" id="type">
+                    <option {% if not values.tag %} selected {% endif %} value=''>
+                        Tag (All)
                     </option>
-                    {% for key,value in room_choices.items %}
-                    <option value="{{key}}">{{value}}</option>
-                    {% endfor %}
-                </select>
+                    {% for key,value in tag_choices.items %}
+                    <option value="{{key}}" {% if key == values.tag %} selected {% endif %} >{{value}}</option>
+                    {% endfor %}  
+                    </select>
                 </div>
             </div>
             <button class="btn btn-warning col-md-12 mt-2" type="submit">

@@ -7,6 +7,15 @@ from django.views.decorators.http import require_POST
 from products.models import Category, Product
 from products.choices import brand_choices, tag_choices
 
+products = Product.objects.select_related('category').all()
+categories = Category.objects.all()
+context = {
+        'categories': categories,
+        'brand_choices': brand_choices,
+        'tag_choices': tag_choices,
+        'products': products,
+    }
+
 def register(request): 
     if request.method == 'POST':
         first_name = request.POST['first_name']
@@ -39,7 +48,7 @@ def register(request):
         messages.success(request, 'You are now registered and can log in')
         return redirect('accounts:login')
     else:
-        return render(request, 'accounts/register.html')
+        return render(request, 'accounts/register.html', context)
 
 def login(request): 
     if request.method == 'POST':
@@ -54,7 +63,7 @@ def login(request):
             messages.error(request, 'Invalid credentials')
             return redirect('accounts:login')
     else:
-        return render(request, 'accounts/login.html')
+        return render(request, 'accounts/login.html', context)
 
 @require_POST
 def logout(request): 
@@ -64,12 +73,4 @@ def logout(request):
 
 @login_required
 def dashboard(request):
-    products = Product.objects.select_related('category').all()
-    categories = Category.objects.all()
-    context = {
-        'categories': categories,
-        'brand_choices': brand_choices,
-        'tag_choices': tag_choices,
-        'products': products,
-    }
     return render(request, 'accounts/dashboard.html', context)
