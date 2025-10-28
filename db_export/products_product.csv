@@ -1,21 +1,22 @@
 id,sku,name,description,price,stock,category_id,is_active,tag,brand,product_img,product_img1,product_img2
-23,SKU0019,測試商品 20,這是第 20 個測試商品,259.68,64,7,True,New,Nature's Bite,products/default.jpg,products/default.jpg,products/default.jpg
-4,SKU0000,測試商品 1,這是第 1 個測試商品,483.86,6,7,True,New,Nature's Bite,products/default.jpg,products/default.jpg,products/default.jpg
-5,SKU0001,測試商品 2,這是第 2 個測試商品,306.11,74,7,True,New,CheeseLovers,products/default.jpg,products/default.jpg,products/default.jpg
-6,SKU0002,測試商品 3,這是第 3 個測試商品,205.63,6,6,True,New,ProFuel,products/default.jpg,products/default.jpg,products/default.jpg
-7,SKU0003,測試商品 4,這是第 4 個測試商品,98.34,81,5,True,Sale,FruitHarvest,products/default.jpg,products/default.jpg,products/default.jpg
-8,SKU0004,測試商品 5,這是第 5 個測試商品,495.36,69,5,True,Sale,Yogurty's,products/default.jpg,products/default.jpg,products/default.jpg
-9,SKU0005,測試商品 6,這是第 6 個測試商品,230.80,85,7,True,New,FizzFresh,products/default.jpg,products/default.jpg,products/default.jpg
-10,SKU0006,測試商品 7,這是第 7 個測試商品,292.33,76,4,True,New,ProFuel,products/default.jpg,products/default.jpg,products/default.jpg
-11,SKU0007,測試商品 8,這是第 8 個測試商品,68.55,21,6,True,Sale,Nutty Guys,products/default.jpg,products/default.jpg,products/default.jpg
-12,SKU0008,測試商品 9,這是第 9 個測試商品,432.91,27,4,True,New,BeanBurst,products/default.jpg,products/default.jpg,products/default.jpg
-13,SKU0009,測試商品 10,這是第 10 個測試商品,46.23,77,5,True,New,SnackAttack,products/default.jpg,products/default.jpg,products/default.jpg
-14,SKU0010,測試商品 11,這是第 11 個測試商品,42.59,42,4,True,New,FloatMaster,products/default.jpg,products/default.jpg,products/default.jpg
-15,SKU0011,測試商品 12,這是第 12 個測試商品,198.64,79,7,True,New,GreenLeaf,products/default.jpg,products/default.jpg,products/default.jpg
-16,SKU0012,測試商品 13,這是第 13 個測試商品,59.84,74,5,True,New,SoundPro,products/default.jpg,products/default.jpg,products/default.jpg
-17,SKU0013,測試商品 14,這是第 14 個測試商品,269.45,8,5,True,New,PlantPower,products/default.jpg,products/default.jpg,products/default.jpg
-18,SKU0014,測試商品 15,這是第 15 個測試商品,361.46,1,7,True,New,MousePro,products/default.jpg,products/default.jpg,products/default.jpg
-19,SKU0015,測試商品 16,這是第 16 個測試商品,53.43,20,7,True,Sale,Yogurty's,products/default.jpg,products/default.jpg,products/default.jpg
-20,SKU0016,測試商品 17,這是第 17 個測試商品,458.12,91,7,True,New,Apple,products/default.jpg,products/default.jpg,products/default.jpg
-21,SKU0017,測試商品 18,這是第 18 個測試商品,318.46,87,5,True,New,LockSecure,products/default.jpg,products/default.jpg,products/default.jpg
-22,SKU0018,測試商品 19,這是第 19 個測試商品,286.16,64,5,True,New,FishWear,products/default.jpg,products/default.jpg,products/default.jpg
+23,SKU0019,測試商品 20,這是第 20 個測試商品,259.68,64,7,True,New,Nature's Bite,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+4,SKU0000,測試商品 1,這是第 1 個測試商品,483.86,6,7,True,New,Nature's Bite,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+5,SKU0001,測試商品 2,這是第 2 個測試商品,306.11,74,7,True,New,CheeseLovers,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+6,SKU0002,測試商品 3,這是第 3 個測試商品,205.63,6,6,True,New,ProFuel,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+7,SKU0003,測試商品 4,這是第 4 個測試商品,98.34,81,5,True,Sale,FruitHarvest,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+8,SKU0004,測試商品 5,這是第 5 個測試商品,495.36,69,5,True,Sale,Yogurty's,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+9,SKU0005,測試商品 6,這是第 6 個測試商品,230.80,85,7,True,New,FizzFresh,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+10,SKU0006,測試商品 7,這是第 7 個測試商品,292.33,76,4,True,New,ProFuel,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+11,SKU0007,測試商品 8,這是第 8 個測試商品,68.55,21,6,True,Sale,Nutty Guys,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+12,SKU0008,測試商品 9,這是第 9 個測試商品,432.91,27,4,True,New,BeanBurst,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+13,SKU0009,測試商品 10,這是第 10 個測試商品,46.23,77,5,True,New,SnackAttack,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+14,SKU0010,測試商品 11,這是第 11 個測試商品,42.59,42,4,True,New,FloatMaster,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+15,SKU0011,測試商品 12,這是第 12 個測試商品,198.64,79,7,True,New,GreenLeaf,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+16,SKU0012,測試商品 13,這是第 13 個測試商品,59.84,74,5,True,New,SoundPro,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+17,SKU0013,測試商品 14,這是第 14 個測試商品,269.45,8,5,True,New,PlantPower,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+18,SKU0014,測試商品 15,這是第 15 個測試商品,361.46,1,7,True,New,MousePro,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+19,SKU0015,測試商品 16,這是第 16 個測試商品,53.43,20,7,True,Sale,Yogurty's,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+20,SKU0016,測試商品 17,這是第 17 個測試商品,458.12,91,7,True,New,Apple,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+21,SKU0017,測試商品 18,這是第 18 個測試商品,318.46,87,5,True,New,LockSecure,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+22,SKU0018,測試商品 19,這是第 19 個測試商品,286.16,64,5,True,New,FishWear,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
+35,iphone17px1tb,iPhone 17 Pro Max (1TB),iPhone 17 Pro Max (1TB),11999.00,10,12,True,New,Apple,../static/img/default.jpg,../static/img/default.jpg,../static/img/default.jpg
