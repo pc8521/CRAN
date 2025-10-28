@@ -8,16 +8,16 @@ from products import views
 #from cart import views 
 
 #from cart.views import add_to_cart, cart, checkout  
-from pages.views import signup
+
 
 urlpatterns = [ 
     path('', include("pages.urls", namespace="pages")),
-    path('signup/', signup, name='signup'),
     path('products/', include("products.urls", namespace="products")),  
     path('stores/', views.store, name='store'),
     #path('contacts/', include("contacts.urls", namespace="contacts")),
     path('accounts/',include("accounts.urls", namespace="accounts")),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    #path('accounts/register/', auth_views.RegisterView.as_view(), name='register'), 
     path('admin/', admin.site.urls),
     path('cart/', include("cart.urls", namespace="cart")),     
     #path('add_to_cart/<int:product_id>/',add_to_cart, name='add_to_cart'),

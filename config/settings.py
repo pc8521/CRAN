@@ -31,9 +31,7 @@ ALLOWED_HOSTS = ["localhost","127.0.0.1"]
 
 LOGOUT_REDIRECT_URL='/'
 LOGIN_REDIRECT_URL='/'
-LOGIN_URL='/login/'
-
-
+LOGIN_URL='/accounts/login/'
 
 SESSION_COOKIE_AGE=86400
 CART_SESSION_ID='cart'

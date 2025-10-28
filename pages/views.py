@@ -20,7 +20,7 @@ def categories(request):
     categories = Category.objects.all()
     return render(request, 'pages/categories.html', {'categories': categories})
 
-def signup(request):
-     return render(request, 'pages/signup.html')
+def register(request):
+     return render(request, 'pages/register.html')
 
 
