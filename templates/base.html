@@ -39,36 +39,9 @@
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
     {% comment %} <script src="https://unpkg.com/htmx.org@1.9.10"></script> {% endcomment %}
 
-    <div id="toast" class="fixed bottom-6 right-6 bg-pink-100 text-pink-800 px-4 py-2 rounded shadow-lg hidden transition-opacity duration-300">
-  Added to cart!
-</div>
+ 
 
-  </body>
-
-
-  {% comment %} <script src="https://unpkg.com/htmx.org@1.9.10"></script> {% endcomment %}
-
-<script>
-  document.body.addEventListener('htmx:afterRequest', function(evt) {
-    const toast = document.getElementById('toast');
-    if (toast) {
-      toast.classList.remove('hidden');
-      toast.classList.add('opacity-100');
-
-      // Optional: play sound
-      const audio = new Audio('/static/sounds/add-to-cart.mp3');
-      audio.play();
-
-      // Hide after 2 seconds
-      setTimeout(() => {
-        toast.classList.add('hidden');
-        toast.classList.remove('opacity-100');
-      }, 2000);
-    }
-  });
-</script>
-
-  
+  </body>  
 </html>
 
 
