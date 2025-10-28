@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from products.models import Category, Product
 from products.choices import brand_choices, tag_choices
+from django.core.mail import send_mail
 
 products = Product.objects.select_related('category').all()
 categories = Category.objects.all()
@@ -45,6 +46,14 @@ def register(request):
             last_name=last_name
         )
         user.save()
+        # Send email
+        send_mail(
+            "Registration for " + user.get_full_name(),
+            "There has been a registration for " + user.get_full_name() + ". Sign and enjoy shopping.",
+            "cranerb7@gmail.com",
+            [user.email],
+            fail_silently=False,
+        )
         messages.success(request, 'You are now registered and can log in')
         return redirect('accounts:login')
     else:
