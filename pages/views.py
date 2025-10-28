@@ -4,7 +4,7 @@ from products.choices import brand_choices, tag_choices
 
 # Create your views here. 
 
-product=Product.objects.all().filter(is_active=True)[:3]
+product=Product.objects.all().filter(is_active=True).order_by('-id')[:3]
 categories=Category.objects.all()
 context={
         'categories': categories,

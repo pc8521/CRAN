@@ -1,5 +1,6 @@
 id,name,description,category_img
-4,清潔用品,,products/default.jpg
-5,廚房用品,,products/default.jpg
-6,居家收納,,products/default.jpg
-7,個人護理,,products/default.jpg
+4,清潔用品,,../static/img/default.jpg
+5,廚房用品,,../static/img/default.jpg
+6,居家收納,,../static/img/default.jpg
+7,個人護理,,../static/img/default.jpg
+12,Mobile Phones,Mobile Phones,../static/img/default.jpg

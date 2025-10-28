@@ -8,7 +8,7 @@ from . choices import brand_choices, tag_choices
 class Category(models.Model):
     name = models.CharField(max_length=20) 
     description = models.TextField(max_length=1000)
-    category_img = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='products/default.jpg')
+    category_img = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='../static/img/default.jpg')
     
     
     
@@ -36,9 +36,9 @@ class Product(models.Model):
     is_active=models.BooleanField(default=True)
     tag = models.CharField(max_length=20, choices=tag_choices.items())
     brand = models.CharField(max_length=20, choices=brand_choices.items())
-    product_img = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='products/default.jpg')
-    product_img1 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='products/default.jpg')
-    product_img2 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='products/default.jpg')
+    product_img = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='../static/img/default.jpg')
+    product_img1 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='../static/img/default.jpg')
+    product_img2 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='../static/img/default.jpg')
 
     
     def __str__(self):      
