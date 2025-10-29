@@ -6,12 +6,6 @@ from products.models import Product
 def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add(product_id)
-
-    # if request.htmx:
-    #     # Return only the cart count badge
-    #     return render(request, "cart/partials/cart_count.html", {'cart': cart})
-    
-    # Fallback for non-HTMX requests
     return render(request, "cart/menu_cart.html", {'cart': cart})
 
 def cart(request):
@@ -33,23 +27,11 @@ def update_cart(request, product_id, action):
         'total_price': (quantity * product.price),
         'quantity': quantity,
     }
-
-    # item={
-    #     'product':{
-    #         'id':product.id,
-    #         'name': product.name,
-    #         'image': product.image,
-    #         'price':product.price,
-    #     },
-    #     'total_price':(quantity * product.price),
-    #     'quantity':quantity,
-    # }
-    
     response = render(request, 'cart/partials/cart_item.html', {'item': item})
     response['HX-Trigger'] = 'update-menu-cart'
     return response   
    
-@login_required
+#@login_required
 def checkout(request):
     return render(request, 'cart/checkout.html')
 
@@ -58,25 +40,3 @@ def hx_menu_cart(request):
 
 def hx_cart_total(request):
     return render(request, 'cart/partials/cart_total.html')
-
-def cart_view(request):
-    cart = request.session.get('cart', {})
-    items = []
-    grand_total = 0
-
-    for product_id, quantity in cart.items():
-        product = get_object_or_404(Product, id=product_id)
-        total_price = product.price * quantity
-        items.append({
-            'product': product,
-            'quantity': quantity,
-            'total_price': total_price,
-        })
-        grand_total += total_price
-
-    cart_count = len(cart)  # Unique product count
-    return render(request, 'cart/cart.html', {
-        'items': items,
-        'grand_total': grand_total,
-        'cart_count': cart_count,
-    })

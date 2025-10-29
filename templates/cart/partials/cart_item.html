@@ -1,4 +1,4 @@
-<div class="product mb-6 flex pr-6" id="cart-item-{{ item.product.id }}">
+ <div class="product mb-6 flex pr-6" id="cart-item-{{ item.product.id }}">
            <a href="#" class="w-1/4">
               <img style="width: 80px; height: 80px; object-fit: cover;" 
               class="hover:shadow-lg rounded-xl" src="{{ item.product.product_img }}">
@@ -8,7 +8,7 @@
              <div class="flex justify-between">
                 <a href="#" class="text-lg">{{ item.product.name }}</a>
 
-                <span class="mb-6 pt-1 text-gray-100">{{ item.total_price }}</span>
+                <span class="mb-6 pt-1 text-gray-500">{{ item.total_price }}</span>
         
               </div>
 
@@ -34,4 +34,4 @@
                   </a>    
              </div>
          </div> 
-       </div>
+       </div> 
