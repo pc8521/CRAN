@@ -2,7 +2,48 @@
   <div class="container">
    
     <a class="nav-link" href="{% url 'pages:categories' %}">Shop</a>
-    
+    <a class="nav-link" href="{% url 'pages:myaccount' %}">My Account</a>
+ <ul class="navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <li {% if 'dashboard' in request.path %} class="nav_item mr-3 active" {% else %} class="nav-item mr-3" {% endif %} >
+            <a class="nav-link" href={% url 'accounts:dashboard' %}> Welcome ({{user.username}}'s dashboard)
+            </a>
+            </li>
+            <!--logout-->
+            <li class='nav-item mr-3'>
+              <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+               <i class="fas fa-sign-out-alt"></i>Logout 
+              </a>
+            <form action="{% url 'accounts:logout' %}" method="POST" id="logout">
+              {% csrf_token %} <!-- logout must brought back token to backend, to 'view'-->
+              <input type="hidden" /> 
+            </form>
+            </li>
+            {% else %}
+            <li {% if 'register' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+              <a class="nav-link" href={% url 'accounts:register' %} > 
+                <i class="fas fa-user-plus"></i> Register</a
+              >
+              </li>   
+
+            <li {% if 'login' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
+                
+              <a class="nav-link" href={% url 'accounts:login' %}>
+                <i class="fas fa-sign-in-alt"></i>
+
+                Login</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+
+
+
+
+
+
+
+
     <div
       hx-get="{% url 'cart:hx_menu_cart' %}"
       hx-trigger="update-menu-cart from:body"

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from products.models import Product, Category
 from products.choices import brand_choices, tag_choices
 
@@ -22,5 +22,26 @@ def categories(request):
 
 def register(request):
      return render(request, 'pages/register.html')
+def myaccount(request):
+    return render(request, 'pages/myaccount.html')
+
+def edit_myaccount(request):
+    if request.method == 'POST': 
+        user=request.user
+        user.first_name=request.POST.get('first_name')
+        user.last_name=request.POST.get('last_name')
+        user.email=request.POST.get('email')
+        user.username=request.POST.get('username')
+        user.save()
+
+        return redirect('account')
+    return render(request, 'pages/edit_myaccount.html')
+
+
+ 
+ 
+
+
+ 
 
 

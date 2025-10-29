@@ -1,4 +1,5 @@
- <div class="product mb-6 flex pr-6" id="cart-item-{{ item.product.id }}">
+ {% if item %} 
+  <div class="product mb-6 flex pr-6" id="cart-item-{{ item.product.id }}">
            <a href="#" class="w-1/4">
               <img style="width: 80px; height: 80px; object-fit: cover;" 
               class="hover:shadow-lg rounded-xl" src="{{ item.product.product_img }}">
@@ -35,3 +36,5 @@
              </div>
          </div> 
        </div> 
+
+{% endif %}

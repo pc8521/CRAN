@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required 
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from contacts.models import Contact
@@ -29,16 +30,9 @@ def register(request):
             messages.error(request, "Passwords do not match")
             return redirect('accounts:register')
         
-        # print('submit') 
-        # messages.success(request,"Account created successfully")
-        # #debug messages content
-        # #storage=messages.get_messages(request)
-        # #for message in storage:
-        # #   print(message.level_tag, message.message)
-        # return redirect('accounts:register')
-    else:    #this else, if you go to a website, you copy other people link and work in your own account however cannot as no token, so here we create a html so it can 
+    else:   
         return render(request, 'accounts/register.html')
-
+  
 def login(request):
     if request.method == "POST":
         username=request.POST['username']  #use post so the password not shown on website when entering when press sybmit
@@ -67,3 +61,4 @@ def dashboard(request):
     # put in variable user_contacts
     context={"contacts":user_contacts} 
     return render(request, 'accounts/dashboard.html',context)
+

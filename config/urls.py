@@ -19,7 +19,8 @@ urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     #path('accounts/register/', auth_views.RegisterView.as_view(), name='register'), 
     path('admin/', admin.site.urls),
-    path('cart/', include("cart.urls", namespace="cart")),     
+    path('cart/', include("cart.urls", namespace="cart")), 
+    path('orders/', include("orders.urls", namespace="orders")),    
     #path('add_to_cart/<int:product_id>/',add_to_cart, name='add_to_cart'),
 ] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)                                             
  
