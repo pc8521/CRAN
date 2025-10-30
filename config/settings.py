@@ -73,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
+    'config.settings.EnsureSessionMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -197,4 +198,5 @@ class EnsureSessionMiddleware:
         if not request.session.session_key:
             request.session.save()
         return self.get_response(request)
+    
 
