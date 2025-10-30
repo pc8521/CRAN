@@ -55,7 +55,7 @@
                 li class="nav-item mr-3"
             {% endif %}
         >
-            <a class="nav-link" href="{% url 'products:products' %}">Products</a>
+            <a class="nav-link" href="{% url 'products:categories' %}">Products</a>
         </li>
         </ul>
 
@@ -71,11 +71,22 @@
                     <i class="fas fa-user-alt"></i> {{user.username}}
                 </a>
             </li>
-            <li {% if 'products' in request.path %} class="nav-item mr-3 active" {% else %} class="nav-item mr-3" {% endif %}>
-                <a class="nav-link" href={% url "accounts:dashboard" %}> 
-                    <i class="fas fa-shopping-cart"></i> Cart (6)
-                </a>
+
+            <li class="nav-item mr-3 active">
+                <div
+                hx-get="{% url 'cart:hx_menu_cart' %}"
+                hx-trigger="update-menu-cart from:body"
+                hx-swap="innerHTML"
+                >    
+                    {% include 'cart/menu_cart.html' %}
+                </div> 
             </li>
+
+            {% comment %} <li class="nav-item mr-3 active">
+                <a class="nav-link" href={% url "cart:cart" %}> 
+                    <i class="fas fa-shopping-cart"></i> Cart ({{ cart|length }})
+                </a>
+            </li> {% endcomment %}
             <!--logout-->
             <li class="nav-item mr-3">
                 <a class="nav-link" href="javascript:{document.getElementById('logout').submit()}" class="nav-link">

@@ -24,7 +24,11 @@ urlpatterns = [
     path('',include("pages.urls", namespace="pages")),
     path('products/',include("products.urls", namespace="products")),
     path('orders/',include("orders.urls", namespace="orders")),
-    path('cart/', include("cart.urls", namespace="cart")), 
+    path('cart/', include("cart.urls", namespace="cart")),
     path('accounts/',include("accounts.urls", namespace="accounts")),
     path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # + debug_toolbar_urls() 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # + debug_toolbar_urls()
+
+admin.site.site_header="CRANemon Shop Admin"
+admin.site.site_title="CRANemon Shop Admin Portal"
+admin.site.index_title="Welcome to CRANemon Shop Admin Portal"

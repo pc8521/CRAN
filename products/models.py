@@ -9,9 +9,7 @@ class Category(models.Model):
     name = models.CharField(max_length=20) 
     description = models.TextField(max_length=1000)
     category_img = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='../static/img/default.jpg')
-    
-    
-    
+
     # def get_absolute_url(self):
     #     return reverse('products', args=[str(self.id)])
     def __str__(self):
@@ -40,6 +38,5 @@ class Product(models.Model):
     product_img1 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='../static/img/default.jpg')
     product_img2 = models.ImageField(upload_to='photos/%Y/%m/%d/',blank=True, null=True, default='../static/img/default.jpg')
 
-    
     def __str__(self):      
         return f"{self.name} - {self.category}"

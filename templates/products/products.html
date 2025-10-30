@@ -11,9 +11,7 @@
     <div class="row text-center">
         <div class="col-md-12">
         <h1 class="display-4">Browse Our Shop</h1>
-        <p class="lead">
-            Explore our wide range of products and find exactly what you need.
-        </p>
+        <p class="lead"></p>
         </div>
     </div>
     </div>
@@ -50,72 +48,72 @@
 <img class="card-img-top" src="{% static 'img/default.jpg' %}" alt="Default image" />
 {% endif %}
 
-<div class="card-img-overlay">
-</div>
-<div class="card-body">
-<div class="listing-heading text-center">
-    <h4 class="text-primary">{{product.name}}</h4>
+            <div class="card-img-overlay">
+            </div>
+            <div class="card-body">
+            <div class="listing-heading text-center">
+                <h4 class="text-primary">{{product.name}}</h4>
 
 
-    <p>
-    <i class="fas fa-map-marker text-secondary"></i> {{product.category | title}}                  
-    </p>
-</div>
-<hr />
-<div class="row py-2 text-secondary">
-    <div class="col-6">
-    
-    <i class="fa-sharp fa-regular fa-coins"></i> Price {{product.price}}
+                <p>
+                <i class="fas fa-map-marker text-secondary"></i> {{product.category | title}}                  
+                </p>
+            </div>
+            <hr />
+            <div class="row py-2 text-secondary">
+                <div class="col-6">
+                
+                <i class="fa-sharp fa-regular fa-coins"></i> Price {{product.price}}
+                </div>
+                <div class="col-6">
+                <i class="nf-fa-coins"></i> Description {{product.description}} 
+                </div>
+            </div>
+            <div class="row py-2 text-secondary">
+                <div class="col-6">
+                <i class="fa-light fa-star-shooting"></i> Brand {{product.brand}}
+                
+                </div>
+                <div class="col-6">
+                <i class="fas fa-bath"></i> Tag {{product.tag}}
+                </div>
+            </div>
+            <hr />
+            <div class="row py-2 text-secondary">
+                <div class="col-12">
+                <i class="fas fa-user"></i> {{product.category.name}}
+                </div>
+            </div>
+            <div class="row text-secondary pb-2">
+                <div class="col-12">
+                <i class="fas fa-clock"></i> Reservation required
+                </div>
+            </div>
+            <hr />
+            {% comment %} listing - done {%endcomment %}
+
+
+
+            <a href={% url "products:product" product.id %} class="btn btn-primary btn-block"
+                >More information</a
+            >
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-md-12">
+            <p>No Product Available</p>
+        </div>
+        {% endif %}
+        
     </div>
-    <div class="col-6">
-    <i class="nf-fa-coins"></i> Description {{product.description}} 
-    </div>
-</div>
-<div class="row py-2 text-secondary">
-    <div class="col-6">
-    <i class="fa-light fa-star-shooting"></i> Brand {{product.brand}}
-    
-    </div>
-    <div class="col-6">
-    <i class="fas fa-bath"></i> Tag {{product.tag}}
-    </div>
-</div>
-<hr />
-<div class="row py-2 text-secondary">
-    <div class="col-12">
-    <i class="fas fa-user"></i> {{product.category.name}}
-    </div>
-</div>
-<div class="row text-secondary pb-2">
-    <div class="col-12">
-    <i class="fas fa-clock"></i> Reservation required
-    </div>
-</div>
-<hr />
-{% comment %} listing - done {%endcomment %}
 
-
-
-<a href={% url "products:product" product.id %} class="btn btn-primary btn-block"
-    >More information</a
->
-</div>
-</div>
-</div>
-{% endfor %}
-{% else %}
-<div class="col-md-12">
-<p>No Product Available</p>
-</div>
-{% endif %}
-
-</div>
-
-<div class="row">
-<div class="col-md-12">
-{% if products.has_other_pages %} 
-<!-- check if any data first, say only 3 clinic, no need paginator -->
-            
+    <div class="row">
+        <div class="col-md-12">
+        {% if products.has_other_pages %} 
+        <!-- check if any data first, say only 3 clinic, no need paginator -->
+        
 <ul class="pagination">
             {% if products.has_previous %}
             <li class="page-item">
@@ -155,5 +153,6 @@
     </div>
     </div>
 </section>
+
 
 {% endblock %}

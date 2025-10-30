@@ -8,7 +8,7 @@
     <div class="container">
     <div class="row text-center">
         <div class="col-md-12">
-        <h1 class="display-4">{{product.name | title}}</h1>
+        <h1 class="display-4">{{product.name}}</h1>
         <p class="lead"><i class="fas fa-map-marker"></i> {{product.category}} </p>
         </div>
     </div>
@@ -34,13 +34,6 @@
     </nav>
     </div>
 </section>
-
-
-
-
-
-
-
 
 <!-- Listing -->
 <section id="product" class="py-4">
@@ -74,7 +67,9 @@
 {% else %}
 <img src="{% static 'img/default.jpg' %}" alt="Default image" class="img-main img-fluid mb-3" />
 {% endif %}
-</a>
+
+
+            </a>
             </div>
             {% endif %}
 
@@ -93,10 +88,6 @@
 {% else %}
 <img src="{% static 'img/default.jpg' %}" alt="Default image" class="img-main img-fluid mb-3" />
 {% endif %}
-
-
-
-
 
             </a>
             </div>
@@ -210,10 +201,12 @@
         </button>
 
 <button
+hred="#"
 class="mt-6 inline-block px-8 py-4 rounded-xl bg-purple-500 text-white hover:bg-purple-700 border-2 border-purple-600 transition-colors duration-300"
 hx-get="{% url 'cart:add_to_cart' product.id %}"
 hx-target="#menu-cart-button"
-hx-swap="outerHTML">
+hx-swap="outerHTML"
+>
 Add to cart
 </button>
         </div>
@@ -232,7 +225,7 @@ Add to cart
         </button>
         </div>
         <div class="modal-body">
-            <form action="#" method="POST">
+            <form action="{% url 'products:store' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="product_id" value="{{product.id}}" /> <!-- hide listing_id as user no need to see -->
             <input type="hidden" name="store_email" value="{{stores.email}}" /> <!-- hide listing_id as user no need to see, listing relate to doctor and doctor has email-->
