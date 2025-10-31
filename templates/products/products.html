@@ -41,7 +41,7 @@
         {% for product in products %} 
         
         <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card listing-preview">
+        <div class="card listing-preview" style="background-color: rgba(245, 221, 176, 0.7)">
 {% if product.product_img and product.product_img.url %}
 <img class="card-img-top" src="{{ product.product_img.url }}" alt="{{ product.name }}" />
 {% else %}
@@ -51,8 +51,8 @@
             <div class="card-img-overlay">
             </div>
             <div class="card-body">
-            <div class="listing-heading text-center">
-                <h4 class="text-primary">{{product.name}}</h4>
+            <div class="listing-heading text-center text-dark">
+    <h4 style="color: rgba(233, 112, 5, 1)">{{product.name}}</h4>
 
 
                 <p>
@@ -63,7 +63,7 @@
             <div class="row py-2 text-secondary">
                 <div class="col-6">
                 
-                <i class="fa-sharp fa-regular fa-coins"></i> Price {{product.price}}
+                <i class="fa-sharp fa-regular fa-coins"></i> Price: HK$ {{product.price}}
                 </div>
                 <div class="col-6">
                 <i class="nf-fa-coins"></i> Description {{product.description}} 
@@ -94,7 +94,7 @@
 
 
 
-            <a href={% url "products:product" product.id %} class="btn btn-primary btn-block"
+            <a href={% url "products:product" product.id %} class="btn btn-warning btn-block"
                 >More information</a
             >
             </div>

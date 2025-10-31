@@ -21,3 +21,6 @@ def home(request):
 
 def about(request):
     return render(request, 'pages/about.html', context)
+
+def map(request):
+    return render(request, 'pages/map.html', context)

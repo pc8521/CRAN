@@ -44,7 +44,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'django_htmx', 
+    'django_htmx',
     # "debug_toolbar", 
 ]
 

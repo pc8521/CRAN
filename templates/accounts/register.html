@@ -10,13 +10,13 @@
         <div class="col-md-6 mx-auto">
         {% include "partials/_alert.html" %}
         <div class="card">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-warning text-white">
             <h4><i class="fas fa-user-plus"></i> Register</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body" style="background-color: rgba(243, 211, 151, 0.5)">
             <form action={% url "accounts:register" %} method="POST">
                 {% csrf_token %}
-                <div class="form-group">
+                <div class="form-group text-dark">
                 <label for="first_name">First Name</label>
                 <input
                     type="text"
@@ -27,7 +27,7 @@
                     required
                 />
                 </div>
-                <div class="form-group">
+                <div class="form-group text-dark">
                 <label for="last_name">Last Name</label>
                 <input
                     type="text"
@@ -38,7 +38,7 @@
                     required
                 />
                 </div>
-                <div class="form-group">
+                <div class="form-group text-dark">
                 <label for="username">Username</label>
                 <input
                     type="text"
@@ -49,7 +49,7 @@
                     required
                 />
                 </div>
-                <div class="form-group">
+                <div class="form-group text-dark">
                 <label for="email">Email</label>
                 <input
                     type="email"
@@ -60,7 +60,7 @@
                     required
                 />
                 </div>
-                <div class="form-group">
+                <div class="form-group text-dark">
                 <label for="password2">Password</label>
                 <input
                     type="password"
@@ -70,7 +70,7 @@
                     required
                 />
                 </div>
-                <div class="form-group">
+                <div class="form-group text-dark">
                 <label for="password">Confirm Password</label>
                 <input
                     type="password"
@@ -83,7 +83,7 @@
                 <input
                 type="submit"
                 value="Register"
-                class="btn btn-secondary btn-block"
+                class="btn btn-warning btn-block"
                 />
             </form>
             </div>

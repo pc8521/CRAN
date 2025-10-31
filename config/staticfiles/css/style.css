@@ -64,7 +64,8 @@ img {
     left: 0;
     min-height: 100%;
     width: 100%;
-    background: rgba(214, 116, 210, 0.8); }
+    background: rgba(243, 211, 151, 0.7); }
+
 
 #showcase-inner {
   background: url(../img/backgroud2.jpg) no-repeat top center/cover fixed;
