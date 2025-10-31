@@ -45,7 +45,7 @@ def checkout(request):
     cart = Cart(request)
     context = {
         'cart': cart,
-        'pub_key': settings.STRIPE_API_KEY_PUBLISHABLE,  # ← 關鍵：變數名改為 'pub_key'
+        'pub_key': settings.STRIPE_API_KEY_PUBLISHABLE,
     }
     return render(request, 'cart/checkout.html', context)
 

@@ -1,54 +1,62 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %}
 {% load humanize %}
-
 {% block content %}
-{% if user.is_authenticated %}
 <div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
     <div class="products w-full lg:w-3/4">
         <h1 class="mb-5 text-3xl">Checkout</h1>
 
-        <form id="checkout-form">
-            <div class="w-full pr-6">
-                <div class="mb-6 p-6 bg-gray-100 rounded-xl">
-                    <h2 class="mb-5 uppercase text-lg">Collection information</h2>
 
-                    <div class="flex space-x-6">
-                        <div class="w-1/2 mb-4">
-                            <label class="inline-block mb-2">First name</label>
-                            <input name="first_name" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.first_name }}">
-                        </div>
+        <div class="w-full pr-6">
+            <div class="mb-6 p-6 bg-gray-100 rounded-xl">
+              <h2 class="mb-5 uppercase text-lg">Collection information</h2>
+            
+              <div class="flex space-x-6">
+                <div class="w-1/2 mb-4">
+                    <label class="inline-block mb-2">First name </label>
+                    <input name="first_name" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.first_name }}">
+             </div>  
 
-                        <div class="w-1/2 mb-4">
-                            <label class="inline-block mb-2">Last name</label>
-                            <input name="last_name" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.last_name }}">
-                        </div>
-                    </div>
+             <div class="w-1/2 mb-4">
+                    <label class="inline-block mb-2">Last name</label>
+                    <input name="last_name" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.last_name }}">
+             </div>
 
-                    <div class="mb-4">
-                        <label class="inline-block mb-2">Email</label>
-                        <input name="email" type="email" class="w-full p-5 rounded-xl" value="{{ request.user.email }}">
-                    </div>
+             <div class="mb-4">
+                <label class="inline-block mb-2">Email</label>
+                <input name="email" type="email" class="w-full p-5 rounded-xl" value="{{ request.user.email }}"> 
+             </div>  
 
-                    <div class="flex space-x-6">
-                        <div class="w-1/2 mb-4">
-                            <label class="inline-block mb-2">Contact No</label>
-                            <input name="phone" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.phone|default:'12345678' }}">
-                        </div>
-                        <!-- 移除無用的 "other" 欄位 -->
-                    </div>
-                </div>
 
-                <!-- 移除重複的 "Contact information" 區塊 -->
+             <div class="flex space-x-6">
+                <div class="w-1/2 mb-4">
+                    <label class="inline-block mb-2"> Contact No </label>
+                    <input name="phone" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.phone }}"> 
+             </div>  
 
-                <div class="mb-6 p-6 bg-gray-100 rounded-xl">
-                    <h2 class="mb-5 uppercase text-lg">Payment information</h2>
-                </div>
-            </div>
-        </form>
+             <div class="w-1/2 mb-4">
+                    <label class="inline-block mb-2">other</label>
+                    <input type="text" class="w-full p-5 rounded-xl">
+             </div>
+
+        </div>
     </div>
 
-    <div class="summary w-full lg:w-1/4 p-6 bg-gray-100 rounded-xl mt-3">
+          <div class="mb-6 p-6 bg-gray-100 rounded-xl">
+              <h2 class="mb-5 uppercase text-lg">Contact information</h2>
+            
+              <div class="mb-4">
+                <label class="inline-block mb-2">Email</label>
+                <input type="email" class="w-full p-5 rounded-xl">
+            </div>  
+
+                      <div class="mb-6 p-6 bg-gray-100 rounded-xl">
+              <h2 h2 class="mb-5 uppercase text-lg">Payment information</h2>
+            </div>  
+        </div>
+   # </form>  
+    </div>     
+
+    <div class="summary w-full w-1/4 p-6 bg-gray-100 rounded-xl mt-3">
         <h2 class="uppercase text-lg mb-5">Summary</h2>
 
         <div class="mb-6 flex justify-between">
@@ -56,93 +64,87 @@
             <span>${{ cart.get_total_cost }}</span>
         </div>
 
-        <!-- 使用 id 來綁定事件，移除 onclick 和 href -->
-        <button id="confirm-checkout-btn" class="inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white">
+        <button 
+        onclick="buy(event)"
+        class="inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white"
+        href="{% url 'cart:checkout' %}" class="inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 
+        text-white"
+        > 
             Confirm Checkout
-        </button>
-    </div>
-</div>
-{% else %}
-<div class="container mx-auto py-20 text-center">
-    <a href="{% url 'accounts:login' %}" class="inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white">
-        Please login to proceed to checkout
-    </a>
-</div>
-{% endif %}
+        </button>   
+     </div>
+       
+</div>        
 {% endblock %}
 
 {% block scripts %}
-<!-- Stripe SDK，注意移除多餘空格 -->
-<script src="https://js.stripe.com/v3"></script>
+<script type="application/javascript" src="https://js.stripe.com/v3"></script>
 <script>
     function validateForm(data) {
-        let errors = [];
-        if (!data.first_name) errors.push('First name is empty');
-        if (!data.last_name) errors.push('Last name is empty');
-        if (!data.email) errors.push('Email is empty');
-        if (!data.phone) errors.push('Phone is empty');
-        return errors;
-    }
+        let errors = []
 
+        if (data.first_name === '') {
+                errors.push('First name is empty')
+        }
+
+        if (data.last_name === '') {
+                errors.push('Last name is empty')
+        }
+        
+        if (data.email === '') {
+            errors.push('Email is empty')
+        }
+
+        if (data.phone === '') {
+            errors.push('Phone is empty')
+        }
+
+        return errors
+    }    
+     
     function buy(event) {
-        event.preventDefault();
+        event.preventDefault()
 
-        const first_name = document.querySelector('input[name="first_name"]');
-        const last_name = document.querySelector('input[name="last_name"]');
-        const email = document.querySelector('input[name="email"]');
-        const phone = document.querySelector('input[name="phone"]');
-
-        if (!first_name || !last_name || !email || !phone) {
-            console.error('Missing required input fields');
-            return;
+        let data = {
+            'first_name' : document.querySelector('input[name=first_name]').value,
+            'last_name' : document.querySelector('input[name=last_name]').value,
+            'email':document.querySelector('input[name=email]').value,
+            'phone':document.querySelector('input[name=phone]').value,   
         }
+    
+        let errors = validateForm(data)
 
-        const data = {
-            first_name: first_name.value,
-            last_name: last_name.value,
-            email: email.value,
-            phone: phone.value,
-        };
-
-        const errors = validateForm(data);
         if (errors.length) {
-            alert('Please fix the following:\n' + errors.join('\n'));
-            return;
-        }
-
-        const stripe = Stripe('{{ pub_key }}');
-
-        fetch('/orders/start_order/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token }}'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(session => {
-            return stripe.redirectToCheckout({ sessionId: session.session.id });
-        })
-        .then(result => {
-            if (result.error) {
-                alert(result.error.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred during checkout. Please try again.');
-        });
-    }
-
-    // 等 DOM 載入完成後綁定按鈕事件
-    document.addEventListener('DOMContentLoaded', function () {
-        const button = document.getElementById('confirm-checkout-btn');
-        if (button) {
-            button.addEventListener('click', buy);
+            console.log('Error', errors)
         } else {
-            console.error('Confirm Checkout button not found!');
+            var stripe = Stripe('{{ pub_key }}')
+
+            fetch('/orders/start_order/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                credentials: 'same-origin',
+                body: JSON.stringify(data)
+            })
+            .then(function(response) {
+                return response.json()  
+            })
+            .then(function(session){
+                return stripe.redirectToCheckout({ sessionId: session.session.id})
+            })
+            .then(function(result) {
+                if (result.error) {
+                    alert(result.error.message)
+                }
+            })
+            .catch(function(error) {
+                console.log('Errors', error)
+            })
         }
-    });
+
+        return false
+    }
 </script>
 {% endblock %}
