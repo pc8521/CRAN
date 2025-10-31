@@ -11,7 +11,7 @@ def add_to_cart(request, product_id):
 
 def cart(request):
     return render(request, 'cart/cart.html')
-   
+
 def update_cart(request, product_id, action):
     cart = Cart(request)
 
@@ -41,9 +41,14 @@ def update_cart(request, product_id, action):
     return response   
 
 # @login_required
+
 def checkout(request):
-    pub_key=settings.STRIPE_API_KEY_PUBLISHABLE
-    return render(request, 'cart/checkout.html', {'pub_key':pub_key})
+    cart = Cart(request)
+    context = {
+        'cart': cart,
+        'pub_key': settings.STRIPE_API_KEY_PUBLISHABLE,
+    }
+    return render(request, 'cart/checkout.html', context)
 
 def hx_menu_cart(request):
     return render(request, 'cart/menu_cart.html')

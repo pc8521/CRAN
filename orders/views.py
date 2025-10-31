@@ -21,9 +21,11 @@ def start_order(request):
         obj = {
             'price_data':{
             'currency': 'hkd',
-            'product_data': {'name': product.name,},  
+            'product_data': {'name': product.name,},
+            # 'unit_amount':product.price,
             'unit_amount': int(product.price * 100),  
-},
+
+            },
             'quantity': item['quantity']    
         }
         
