@@ -225,7 +225,7 @@ Add to cart
         </button>
         </div>
         <div class="modal-body">
-            <form action="{% url 'products:store' %}" method="POST">
+            <form action="{% url 'products:inquiry' %}" method="POST">
             {% csrf_token %}
             <input type="hidden" name="product_id" value="{{product.id}}" /> <!-- hide listing_id as user no need to see -->
             <input type="hidden" name="store_email" value="{{stores.email}}" /> <!-- hide listing_id as user no need to see, listing relate to doctor and doctor has email-->

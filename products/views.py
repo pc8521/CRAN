@@ -84,6 +84,9 @@ def search(request):
             }    
     return render(request, 'products/search.html', context)
 
+def inquiry(request):
+    return render(request, 'products/inquiry.html')
+
 
 def store(request):
     if request.method == 'POST':

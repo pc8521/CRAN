@@ -73,6 +73,9 @@ def login(request):
             return redirect('accounts:login')
     else:
         return render(request, 'accounts/login.html', context)
+    
+def myaccount(request):
+    return render(request, 'accounts/myaccount.html', context)
 
 @require_POST
 def logout(request): 
