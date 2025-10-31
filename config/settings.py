@@ -189,7 +189,6 @@ CART_SESSION_ID='cart'
 STRIPE_API_KEY_PUBLISHABLE = os.getenv('STRIPE_API_KEY_PUBLISHABLE')
 STRIPE_API_KEY_HIDDEN = os.getenv('STRIPE_API_KEY_HIDDEN')
 
-# middleware.py
 class EnsureSessionMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
