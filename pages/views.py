@@ -18,6 +18,9 @@ def index(request):
 
 def home(request):
     return render(request, 'pages/home.html', context)
-
+    
 def about(request):
     return render(request, 'pages/about.html', context)
+
+def map(request):
+    return render(request, 'pages/map.html', context)

@@ -29,10 +29,10 @@
         data-toggle="collapse"
         data-target="#navbarNavAltMarkup"
     >
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon" ></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" >
         <li if {% if "/" == request.path %}
                 class="nav-item active mr-3"
             {% else %}
@@ -105,13 +105,13 @@
 <div class="modal fade" id="searchModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-warning">
                 <h5 class="modal-title" id="searchModalLabel">Search</h5>
                 <button type="button" class="close" data-dismiss="modal">
                 <span>&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="background-color: rgba(243, 211, 151, 0.5)">
             <form action="{% url 'products:search' %}">
                 <div class="form-group">
                     <div class="col-md-12 mb-3">
@@ -161,7 +161,7 @@
             <input
             type="submit"
             value="Send"
-            class="btn btn-block btn-secondary"
+            class="btn btn-block btn-warning"
             />
         </form>
         </div>
