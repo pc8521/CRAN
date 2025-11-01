@@ -9,6 +9,7 @@ from products.choices import brand_choices, tag_choices
 from django.core.mail import send_mail
 from cart.models import CartItem
 from orders.models import Order, OrderItem
+from wishlist.models import Wishlist
 
 products = Product.objects.select_related('category').all()
 categories = Category.objects.all()
@@ -89,12 +90,15 @@ def logout(request):
 def dashboard(request):
     cartitems=CartItem.objects.filter(user_id=request.user.id)
     orders=Order.objects.filter(user_id=request.user.id)
-    # 1. Get order items for the current user, sorted by order_id
+    # 1a. Get order items for the current user, sorted by order_id
     orderitems = (
         OrderItem.objects.select_related('order', 'product').filter(order__user=request.user).order_by('order_id')
     )
+    # 1b. Get wishlist items for the current user
+    wishlist=Wishlist.objects.select_related('user','product').filter(user_id=request.user.id)    
     # 2. Pass grouped data to the template         
     context={"cartitems":cartitems,
-                "orders":orders,
-                "orderitems":orderitems,}         
+            "orders":orders,
+            "orderitems":orderitems,
+            "wishlist":wishlist, }         
     return render(request, 'accounts/dashboard.html', context)
