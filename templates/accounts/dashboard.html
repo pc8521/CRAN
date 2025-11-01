@@ -19,6 +19,175 @@
     </div>
 </section>
 
-<h1>dashboard.html</h1>
+</section>
 
+  <section id="showcase">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <!-- Left Column - wishlist -->
+                <div class="col-md-8 col-lg-9 mb-4">
+                    <div class="card wishlist-card">
+                        <div class="Wishlist-heading text-center">
+                            <div class="heading-content">
+                                <i class="fa-solid fa-tags fa-2xl" style="color: #ffc107;"></i>
+                                <h2 class="heading-text">Your Wishlist</h2>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="card-content">
+                            <div class="row py-2 text-secondary m-2">
+                                <div class="col-6">
+                                    <i class="fa-solid fa-heart fa-xl" style="color: #ffc107;"></i> Selected Items 
+                                </div>
+                                <div class="col-3">
+                                    <i class="fa-solid fa-heart fa-xl" style="color: #ffc107;"></i> QTY
+                                </div>
+                                <div class="col-3">
+                                    <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffc107;"></i> Unit price
+                                </div>
+                            </div>
+
+                            <div class="row py-2 text-secondary m-2">
+                                <div class="col-6">
+                                    <i class="fa-solid fa-check fa-sm" style="color: #ffc107;"></i> M&M'S Peanut Chocolate 37G
+                                </div>
+                                <div class="col-3">
+                                    <i></i> 1 bag
+                                </div>
+                                <div class="col-3">
+                                    <i></i> HK$20
+                                </div>
+                            </div>
+                            
+                            <div class="row py-2 text-secondary m-2">
+                                <div class="col-6">
+                                    <i class="fa-solid fa-check fa-sm" style="color: #ffc107;"></i> Kit Kat Chocolate Bar
+                                </div>
+                                <div class="col-3">
+                                    <i></i> 2 bars
+                                </div>
+                                <div class="col-3">
+                                    <i></i> HK$15
+                                </div>
+                            </div>
+                            
+                            <div class="row py-2 text-secondary m-2">
+                                <div class="col-6">
+                                    <i class="fa-solid fa-check fa-sm" style="color: #ffc107;"></i> Cadbury Dairy Milk
+                                </div>
+                                <div class="col-3">
+                                    <i></i> 1 bar
+                                </div>
+                                <div class="col-3">
+                                    <i></i> HK$25
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- History Section -->
+            <div class="row">
+                <div class="col-md-12 col-lg-12 mb-4">
+                    <div class="card history-card">
+                        {% if orders %}
+                        <div class="History-heading text-center">
+                            <div class="history-content">
+                                <i class="fa-solid fa-tags fa-2xl" style="color: #ffc107;"></i>
+                                <h2 class="heading-text">Your History</h2>
+                            </div>
+                        </div>
+                        
+                        <hr />
+                        
+                        <div class="card-content">
+                            
+                            <div class="row py-2 text-secondary m-2">
+                                <div class="col-2">
+                                    <i class="fa-solid fa-heart fa-xl" style="color: #ffc107;"></i>Order Date 
+                                </div>
+                                <div class="col-4">
+                                    <i class="fa-solid fa-heart fa-xl" style="color: #ffc107;"></i>Items 
+                                </div>
+                                <div class="col-1">
+                                    <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffc107;"></i>QTY 
+                                </div>                                
+                                <div class="col-2">
+                                    <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffc107;"></i>Amount 
+                                </div>
+                                <div class="col-2">
+                                    <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ffc107;"></i>Status 
+                                </div>                                
+                            </div>
+                            {% for orderitem in orderitems %}
+                            <div class="row py-2 text-secondary m-2">
+                                <div class="col-2">
+                                    <i class="fa-solid fa-check fa-sm" style="color: #ffc107;">{{orderitem.order.order_date}}</i>                                   
+                                </div>
+                                <div class="col-4">
+                                    <i>{{orderitem.product}}</i> 
+                                </div>
+                                <div class="col-1">
+                                    <i>{{orderitem.quantity}}</i> 
+                                </div>                                
+                                <div class="col-2">
+                                    <i>HK${{orderitem.order.total_amount}}</i> 
+                                </div>
+                                <div class="col-2">
+                                    <i>{{orderitem.order.status}}</i> 
+                                </div> 
+                                <div class="col-1">
+                                    {% if orderitem.product.is_active %}
+                                        <button
+                                        href="#"
+                                        class="btn btn-primary"
+                                        hx-get="{% url 'cart:add_to_cart' orderitem.product.id %}"
+                                        hx-target="#menu-cart-button"
+                                        hx-swap="outerHTML"
+                                        data-toggle="modal" data-target="#confirmModal"                                         
+                                        >
+                                        Reorder
+                                        </button>     
+                                    {% else %}  
+                                        <button
+                                        href="#"
+                                        class="btn btn-primary"
+                                        hx-target="#menu-cart-button"
+                                        hx-swap="outerHTML"
+                                        disabled
+                                        >
+                                        Out of stock
+                                        </button>  
+                                    {% endif %}                                                                                                        
+                                </div> 
+                            </div>
+                            {% endfor %}  
+                            {% else %}
+                                <p>Your haven't make any orders yet. Go shopping now.</p>
+                            {% endif %}                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Confirm Modal-->
+    <div class="modal" id="confirmModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reorder</h5>
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">Item(s) added to cart. Thank you!</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">close</button>
+            </div>
+        </div>
+    </div>
+    </div>
 {% endblock %}
