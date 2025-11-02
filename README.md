@@ -1,3 +1,15 @@
+首次git push到github CRAN:
+@project folder (branch: main)
+(假設已commit, 箭咀綠色)
+
+```bash
+git branch <your branch>
+git switch <your branch>
+git remote remove origin
+git remote add origin git@github.com:pc8521/CRAN.git
+git push origin <your branch>
+```
+
 開始工作前（同步最新程式碼）
 ```bash
 git checkout main

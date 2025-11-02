@@ -7,10 +7,13 @@ from django.views.decorators.http import require_POST
 from products.models import Category, Product
 from products.choices import brand_choices, tag_choices
 from django.core.mail import send_mail
+from cart.models import CartItem
+from orders.models import Order, OrderItem
+from wishlist.models import Wishlist
 
 products = Product.objects.select_related('category').all()
 categories = Category.objects.all()
-context = {
+Category_data = {
         'categories': categories,
         'brand_choices': brand_choices,
         'tag_choices': tag_choices,
@@ -57,7 +60,7 @@ def register(request):
         messages.success(request, 'You are now registered and can log in')
         return redirect('accounts:login')
     else:
-        return render(request, 'accounts/register.html', context)
+        return render(request, 'accounts/register.html', Category_data)
 
 def login(request): 
     if request.method == 'POST':
@@ -72,10 +75,10 @@ def login(request):
             messages.error(request, 'Invalid credentials')
             return redirect('accounts:login')
     else:
-        return render(request, 'accounts/login.html', context)
+        return render(request, 'accounts/login.html', Category_data)
     
 def myaccount(request):
-    return render(request, 'accounts/myaccount.html', context)
+    return render(request, 'accounts/myaccount.html', Category_data)
 
 @require_POST
 def logout(request): 
@@ -85,4 +88,20 @@ def logout(request):
 
 @login_required
 def dashboard(request):
+    cartitems=CartItem.objects.filter(user_id=request.user.id)
+    orders=Order.objects.filter(user_id=request.user.id)
+    # 1a. Get order items for the current user, sorted by order_id
+    orderitems = (
+        OrderItem.objects.select_related('order', 'product').filter(order__user=request.user).order_by('order_id')
+    )
+    # 1b. Get wishlist items for the current user
+    wishlist=Wishlist.objects.select_related('user','product').filter(user_id=request.user.id)    
+    # 2. Pass grouped data to the template         
+    context={
+            "cartitems":cartitems,
+            "orders":orders,
+            "orderitems":orderitems,
+            "wishlist":wishlist,
+            **Category_data
+    }
     return render(request, 'accounts/dashboard.html', context)

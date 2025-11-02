@@ -8,7 +8,7 @@ from products.choices import brand_choices, tag_choices
 
 products = Product.objects.select_related('category').all()
 categories = Category.objects.all()
-categories_data = {
+Category_data = {
         'categories': categories,
         'brand_choices': brand_choices,
         'tag_choices': tag_choices,
@@ -18,10 +18,13 @@ categories_data = {
 def add_to_cart(request, product_id):
     cart = Cart(request)
     cart.add(product_id)
-    return render(request, "cart/menu_cart.html", {'cart': cart})
+    return render(request, "cart/partials/menu_cart.html", {'cart': cart})
 
 def cart(request):
-    return render(request, 'cart/cart.html', categories_data)
+    return render(request, 'cart/cart.html', Category_data)
+
+def success(request):
+    return render(request, 'cart/success.html')
 
 def update_cart(request, product_id, action):
     cart = Cart(request)
@@ -58,12 +61,12 @@ def checkout(request):
     context = {
         'cart': cart,
         'pub_key': settings.STRIPE_API_KEY_PUBLISHABLE,
-        **categories_data
+        **Category_data
     }
     return render(request, 'cart/checkout.html', context)
 
 def hx_menu_cart(request):
-    return render(request, 'cart/menu_cart.html')
+    return render(request, 'cart/partials/menu_cart.html')
 
 def hx_cart_total(request):
     return render(request, 'cart/partials/cart_total.html')

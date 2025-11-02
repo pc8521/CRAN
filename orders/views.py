@@ -45,8 +45,8 @@ def start_order(request):
     last_name = data['last_name']
     email=data['email']
     phone=data['phone']
-    
-    order=Order.objects.create(user=request.user, first_name=first_name, last_name=last_name, email=email, phone=phone)
+
+    order=Order.objects.create(user=request.user, first_name=first_name, last_name=last_name, email=email, phone=phone , total_amount=total_price)
     order.payment_intent = payment_intent
     order.paid_amount = total_price
     order.paid=True
@@ -59,5 +59,7 @@ def start_order(request):
             
         item=OrderItem.objects.create(order=order, product=product, price=price, quantity=quantity)
 
+    cart.clear()
+    
     return JsonResponse({'session': session, 'order':payment_intent})
     # return JsonResponse({'session': {'id': session.id}})

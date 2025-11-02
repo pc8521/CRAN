@@ -39,24 +39,20 @@
             <label class="inline-block mb-2">other</label>
             <input type="text" class="w-full p-5 rounded-xl">
         </div>
-
-</div>
-</div>
-
-        <div class="mb-6 p-6 bg-gray-100 rounded-xl">
-            <h2 class="mb-5 uppercase text-lg">Contact information</h2>
-        
-            <div class="mb-4">
-            <label class="inline-block mb-2">Email</label>
-            <input type="email" class="w-full p-5 rounded-xl">
-        </div>  
-
-                    <div class="mb-6 p-6 bg-gray-100 rounded-xl">
-            <h2 h2 class="mb-5 uppercase text-lg">Payment information</h2>
-        </div>  
     </div>
-# </form>  
-</div>     
+</div>
+
+<div class="mb-6 p-6 bg-gray-100 rounded-xl">
+    <h2 class="mb-5 uppercase text-lg">Contact information</h2>
+    <div class="mb-4">
+        <label class="inline-block mb-2">Email</label>
+        <input type="email" class="w-full p-5 rounded-xl" value="{{ request.user.email }}">
+    </div>
+    <div class="mb-6 p-6 bg-gray-100 rounded-xl">
+        <h2 class="mb-5 uppercase text-lg">Payment information</h2>
+        <input type="text" class="w-full p-5 rounded-xl">
+    </div>
+</div>
 
 <div class="summary w-full w-1/4 p-6 bg-gray-100 rounded-xl mt-3">
     <h2 class="uppercase text-lg mb-5">Summary</h2>
@@ -75,7 +71,6 @@
         Confirm Checkout
     </button>   
     </div>
-
 </div>
 
 <script src="https://js.stripe.com/v3"></script>

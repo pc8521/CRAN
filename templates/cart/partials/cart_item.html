@@ -7,7 +7,7 @@
             class="hover:shadow-lg rounded-xl" src="{{ item.product.product_img.url }}">
         </a> {% endcomment %}
 
-        <a href="#" class="w-1/4">
+<a href="{% url 'products:product' item.product.id %}" class="w-1/4">
 {% if item.product.product_img %}
 <img style="width: 80px; height: 80px; object-fit: cover;" 
         class="hover:shadow-lg rounded-xl" 
@@ -23,7 +23,7 @@
 
         <div class="w-3/4 pl-6">
             <div class="flex justify-between">
-            <a href="#" class="text-lg">{{ item.product.name }}</a>
+            <a href="{% url 'products:product' item.product.id %}" class="text-lg">{{ item.product.name }}</a>
 
             <span class="mb-6 pt-1 text-gray-500">{{ item.total_price }}</span>
     
