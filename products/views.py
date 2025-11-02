@@ -4,6 +4,7 @@ from . choices import brand_choices, tag_choices
 from cart.models import CartItem
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
+from wishlist.models import Wishlist
 
 # Create your views here.
 
@@ -117,6 +118,10 @@ def store(request):
         # Handle the form submission here
         return redirect('products:products')  # or wherever you want to go
 
+def add_to_wishlist(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    wishlist=Wishlist.objects.get_or_create(user=request.user, product=product)
+    return redirect('products:products')  # Redirect back to product page   
 
 # def categories(request):
 #     categories = Category.objects.all()

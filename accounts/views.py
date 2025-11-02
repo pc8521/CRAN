@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse 
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from cart.models import CartItem
 from orders.models import Order, OrderItem
 from wishlist.models import Wishlist
+from cart.cart import Cart
 
 products = Product.objects.select_related('category').all()
 categories = Category.objects.all()
@@ -88,20 +89,33 @@ def logout(request):
 
 @login_required
 def dashboard(request):
-    cartitems=CartItem.objects.filter(user_id=request.user.id)
-    orders=Order.objects.filter(user_id=request.user.id)
     # 1a. Get order items for the current user, sorted by order_id
-    orderitems = (
-        OrderItem.objects.select_related('order', 'product').filter(order__user=request.user).order_by('order_id')
-    )
+    orders = (
+        Order.objects
+        .filter(user=request.user)
+        .prefetch_related('orderitem_set__product')
+        .order_by('-order_date')
+    )    
     # 1b. Get wishlist items for the current user
     wishlist=Wishlist.objects.select_related('user','product').filter(user_id=request.user.id)    
     # 2. Pass grouped data to the template         
     context={
-            "cartitems":cartitems,
             "orders":orders,
-            "orderitems":orderitems,
             "wishlist":wishlist,
             **Category_data
     }
     return render(request, 'accounts/dashboard.html', context)
+
+def reorder(request, order_id):
+    # Ensure the order belongs to the current user
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    
+    cart = Cart(request)
+    
+    # Add each item from the order to the cart
+    for item in order.orderitem_set.all():
+        for i in range(item.quantity):
+            cart.add(item.product_id)
+    
+    # Return updated cart partial (for HTMX)
+    return render(request, "cart/partials/menu_cart.html", {'cart': cart})
