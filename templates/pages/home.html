@@ -265,32 +265,41 @@
     <div class="card-img-overlay">
     </div>
     <div class="card-body" style="background-color: rgba(245, 221, 176, 0.4)">
-    <div class="listing-heading text-center">
-        <h4 style="color: rgba(233, 112, 5, 1)">{{product.name}}</h4>
-        <p>
-        <i class="fas fa-map-marker text-secondary"></i> {{product.category | title}}                  
-        </p>
-    </div>
-    <hr />
+    <div class="row py-0 text-center">   
+        <div class="col-12">
+            <i class="fas fa-solid fa-clone" style="color: #0d2dceff;"> {{product.brand}}</i>
+        </div>
+        <br />
+        <div class="col-12">
+            <strong><h3 style="color: rgba(22, 26, 246, 1)">{{product.name}}</h3></strong>
+        </div>
+        <br />
+        <div class="col-12">
+            <h1 class="fas fa-solid fa-dollar-sign" style="color: #e96d0eff;"> {{product.price}}</h1>
+        </div>
+    </div>     
+
     <div class="row py-2 text-secondary">
-        <div class="col-6">
-        
-        <i class="fa-sharp fa-regular fa-coins"></i> Price {{product.price}}
+        <div class="col-4 mt-2">
+            <i class="fas fa-solid fa-receipt"style="color: #74C0FC;"></i> {{product.category | title}} 
         </div>
-        <div class="col-6">
-        <i class="nf-fa-coins"></i> Description {{product.description}} 
+        <div class="col-4 mt-2">
+            <i class="fas fa-solid fa-star" style="color: #74C0FC;"></i>{{product.tag}}
         </div>
-    </div>
-    <div class="row py-2 text-secondary">
-        <div class="col-6">
-        <i class="fa-light fa-star-shooting"></i> Brand {{product.brand}}
-        
-        </div>
-        <div class="col-6">
-        <i class="fas fa-bath"></i> Tag {{product.tag}}
+        <div class="col-4 mt-0">
+            <a href="#" class="btn" style="background-color:#74C0FC;">
+                <i class="fas fa-heart text-danger"> Like</i>
+            </a>
         </div>
     </div>
-    <hr />
+
+    <div class="col-12">
+        <div class="row py-0 text-center text-justify"> 
+            <h6> Description : {{product.description}} </h6>
+            </text-justify>
+        </div>    </div> 
+        <br />
+
     <a href={% url "products:product" product.id %} class="btn btn-warning btn-block">
         More Info</a>
     </div>

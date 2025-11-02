@@ -6,33 +6,22 @@
 {% block content %} {% load static %}
 {% include 'partials/_alert.html' %}
 
-<section id="showcase-inner" class="py-5 text-white">
-    <div class="container">
-    <div class="row text-center">
-        <div class="col-md-12">
-        <h1 class="display-4">Browse Our Shop</h1>
-        <p class="lead"></p>
-        </div>
-    </div>
-    </div>
-</section>
-
 <!-- Breadcrumb -->
-<section id="bc" class="mt-3">
+<section id="bc" class="mt-0">
     <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href={% url "pages:home" %}> <i class="fas fa-home"></i> Home</a>
         </li>
-        <li class="breadcrumb-item active">Browse Products</li>
+        <li class="breadcrumb-item active text-dark">Products</li>
         </ol>
     </nav>
     </div>
 </section>
 
 <!-- Products -->
-<section id="Products" class="py-4">
+<section id="Products" class="py-2">
     <div class="container">
     <div class="row">
 
@@ -51,48 +40,40 @@
             <div class="card-img-overlay">
             </div>
             <div class="card-body">
-            <div class="listing-heading text-center text-dark">
-    <h4 style="color: rgba(233, 112, 5, 1)">{{product.name}}</h4>
+    <div class="row py-0 text-center">   
+        <div class="col-12">
+            <i class="fas fa-solid fa-clone" style="color: #0d2dceff;"> {{product.brand}}</i>
+        </div>
+        <br />
+        <div class="col-12">
+            <strong><h3 style="color: rgba(22, 26, 246, 1)">{{product.name}}</h3></strong>
+        </div>
+        <br />
+        <div class="col-12">
+            <h1 class="fas fa-solid fa-dollar-sign" style="color: #e96d0eff;"> {{product.price}}</h1>
+        </div>
+    </div>     
 
+    <div class="row py-2 text-secondary">
+        <div class="col-4 mt-2">
+            <i class="fas fa-solid fa-receipt"style="color: #74C0FC;"></i> {{product.category | title}} 
+        </div>
+        <div class="col-4 mt-2">
+            <i class="fas fa-solid fa-star" style="color: #74C0FC;"></i>{{product.tag}}
+        </div>
+        <div class="col-4 mt-0">
+            <a href="#" class="btn" style="background-color:#74C0FC;">
+                <i class="fas fa-heart text-danger"> Like</i>
+            </a>
+        </div>
+    </div>
 
-                <p>
-                <i class="fas fa-map-marker text-secondary"></i> {{product.category | title}}                  
-                </p>
-            </div>
-            <hr />
-            <div class="row py-2 text-secondary">
-                <div class="col-6">
-                
-                <i class="fa-sharp fa-regular fa-coins"></i> Price: HK$ {{product.price}}
-                </div>
-                <div class="col-6">
-                <i class="nf-fa-coins"></i> Description {{product.description}} 
-                </div>
-            </div>
-            <div class="row py-2 text-secondary">
-                <div class="col-6">
-                <i class="fa-light fa-star-shooting"></i> Brand {{product.brand}}
-                
-                </div>
-                <div class="col-6">
-                <i class="fas fa-bath"></i> Tag {{product.tag}}
-                </div>
-            </div>
-            <hr />
-            <div class="row py-2 text-secondary">
-                <div class="col-12">
-                <i class="fas fa-user"></i> {{product.category.name}}
-                </div>
-            </div>
-            <div class="row text-secondary pb-2">
-                <div class="col-12">
-                <i class="fas fa-clock"></i> Reservation required
-                </div>
-            </div>
-            <hr />
-            {% comment %} listing - done {%endcomment %}
-
-
+    <div class="col-12">
+        <div class="row py-0 text-center text-justify text-dark"> 
+            <h6> Description : {{product.description}} </h6>
+            </text-justify>
+        </div>    </div> 
+        <br />
 
             <a href={% url "products:product" product.id %} class="btn btn-warning btn-block"
                 >More information</a
