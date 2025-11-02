@@ -109,9 +109,15 @@
             <h4 class="fas fa-solid fa-star" style="color: #1850e8ff;">{{product.tag}} </h4>
         </div>
         <div class="col-4 mt-0">
+            {% if user.is_authenticated %}
             <a href="{% url 'products:add_to_wishlist' product.id %}" class="btn" style="background-color:#74C0FC;">
-                <h4 class="fas fa-heart text-danger"> Like</h4>
+                <i class="fas fa-heart text-danger"> Like</i>
             </a>
+            {% else %}
+            <a href="#" class="btn" style="background-color:#74C0FC;">
+                <i class="fas fa-heart text-danger"> Like</i>
+            </a>
+            {% endif %}
         </div>
     </div>
 

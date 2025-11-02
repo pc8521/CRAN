@@ -48,11 +48,11 @@
                                 <div class="col-6">
                                     <i class="fa-solid fa-check fa-sm" style="color: #ffc107;"></i> {{item.product}}
                                 </div>
-                                <div class="col-5">
+                                <div class="col-4">
                                     <i class="fa-solid fa-check fa-sm" style="color: #ffc107;"></i> {{item.product.price}}
                                 </div> 
-                                <div class="col-1">
-                                    {% if item.product.is_active %}
+                                <div class="col-2">
+                                        {% if item.product.is_active %}
                                         <button
                                         href="#"
                                         class="btn btn-primary"
@@ -62,8 +62,12 @@
                                         data-toggle="modal" data-target="#confirmModal"                                         
                                         >
                                         Add to Cart
-                                        </button>     
-                                    {% else %}  
+                                        </button>
+                                        <button class="btn btn-danger" 
+                                                onclick="location.href='{% url 'products:delete_wishlist' item.id %}'">
+                                            Delete
+                                        </button>
+                                        {% else %}
                                         <button
                                         href="#"
                                         class="btn btn-primary"
@@ -72,8 +76,8 @@
                                         disabled
                                         >
                                         Out of stock
-                                        </button>  
-                                    {% endif %}                                                                                                        
+                                        </button>
+                                        {% endif %}                                                                                                     
                                 </div>                                                                
                             </div>
                             {% endfor %}

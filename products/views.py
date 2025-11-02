@@ -5,6 +5,7 @@ from cart.models import CartItem
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
 from wishlist.models import Wishlist
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -117,11 +118,18 @@ def store(request):
         store_email = request.POST.get('store_email')
         # Handle the form submission here
         return redirect('products:products')  # or wherever you want to go
-
+    
+@login_required 
 def add_to_wishlist(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     wishlist=Wishlist.objects.get_or_create(user=request.user, product=product)
-    return redirect('products:products')  # Redirect back to product page   
+    return redirect('products:products')  # Redirect back to product page
+
+@login_required 
+def delete_wishlist(request, item_id):
+    item = get_object_or_404(Wishlist, id=item_id, user=request.user)
+    item.delete()
+    return redirect('accounts:dashboard')  # 修正：跳回正確的 dashboard
 
 # def categories(request):
 #     categories = Category.objects.all()

@@ -77,6 +77,21 @@ def login(request):
             return redirect('accounts:login')
     else:
         return render(request, 'accounts/login.html', Category_data)
+
+def login_cart(request): 
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            messages.success(request, 'You are now logged in')
+            return redirect('cart:cart')
+        else:
+            messages.error(request, 'Invalid credentials')
+            return redirect('accounts:login_cart')
+    else:
+        return render(request, 'accounts/login_cart.html', Category_data)
     
 def myaccount(request):
     return render(request, 'accounts/myaccount.html', Category_data)

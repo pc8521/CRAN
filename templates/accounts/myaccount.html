@@ -6,7 +6,7 @@
 {% block title %} Edit myaccount {% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 text-body">
 <div class="row justify-content-center">
 <div class="col-md-8 col-lg-6">
     <div class="card p-4 shadow-sm">
@@ -35,7 +35,7 @@
         <input name="email" id="email" type="email" class="form-control" value="{{ request.user.email }}">
         </div>
 
-        <button type="submit" class="btn btn-purple w-100">Submit</button>
+        <button type="submit" class="btn btn-warning w-100">Submit</button>
     </form>
     </div>
 </div>

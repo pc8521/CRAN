@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+{% include 'partials/_alert.html' %}
 
 <div class="container py-4">
 <div class="row">
@@ -12,7 +13,7 @@
 </div>
 
 <div class="col-lg-3 col-12 mt-3">
-    <div class="p-4 bg-light rounded">
+    <div class="p-4 bg-light rounded text-body">
     <h2 class="text-uppercase h5 mb-4">Summary</h2>
 
     <div class="d-flex justify-content-between mb-4">
@@ -26,7 +27,7 @@
         </span>
     </div>
 
-    <a href="{% url 'cart:checkout' %}" class="bbtn btn-purple btn-block">
+    <a href="{% url 'cart:checkout' %}" class="btn btn-warning btn-block">
         Checkout
     </a>
     </div>

@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect 
 from .models import Order, OrderItem
 from cart.cart import Cart
+from django.core.mail import send_mail
 
 def start_order(request):
     cart = Cart(request)
@@ -50,6 +51,14 @@ def start_order(request):
     order.payment_intent = payment_intent
     order.paid_amount = total_price
     order.paid=True
+    # Send email
+    send_mail(
+        "Thank you for your purchase, Order id# " + str(order.id),
+        "There has been a purchase for the order id# " + str(order.id) + ". We will process your order soon.",
+        "cranerb7@gmail.com",
+        [order.email],
+        fail_silently=False,
+    )
     order.save()
     
     for item in cart:
