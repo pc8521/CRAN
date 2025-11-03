@@ -5,34 +5,43 @@
 {% include 'partials/_alert.html' %}
 
 <div class="container py-4">
-<div class="row">
-<div class="col-lg-9 col-12">
-    {% for item in cart %}
-    {% include 'cart/partials/cart_item.html' %}
-    {% endfor %}
-</div>
+    <div class="row">
+        <div class="col-lg-9 col-12">
+            {% for item in cart %}
+            {% include 'cart/partials/cart_item.html' %}
+            <hr />
+            {% endfor %}
+        </div>
 
-<div class="col-lg-3 col-12 mt-3">
-    <div class="p-4 bg-light rounded text-body">
-    <h2 class="text-uppercase h5 mb-4">Summary</h2>
-
-    <div class="d-flex justify-content-between mb-4">
-        <span class="font-weight-bold">Total</span>
-        <span
-        hx-get="{% url 'cart:hx_cart_total' %}"
-        hx-trigger="update-menu-cart from:body"
-        hx-swap="innerHTML"
-        >
-        {% include 'cart/partials/cart_total.html' %}
-        </span>
+        <!-- Summary Box Column -->
+        <div class="col-lg-3 col-12 p-1">
+            <div class="card" style="background-color: rgba(243, 211, 151, 0.5)">
+                <h2 class="card-header bg-warning text-dark text-center h5 mb-4">Summary</h2>
+                <div class="d-flex justify-content-between mb-3 mt-3 p-3">
+                    <h5><span class="text-dark">Total : HK$</span></h5>
+                    <h5><span class="font-weight-bold text-dark"
+                        id="cart-total"
+                        hx-get="{% url 'cart:hx_cart_total' %}"
+                        hx-trigger="update-menu-cart from:body, cart-updated from:body"
+                        hx-swap="innerHTML">
+                    {% include 'cart/partials/cart_total.html' %}
+                    </span></h5>
+                </div>
+                <br />
+                <a href="{% url 'cart:checkout' %}" class="btn btn-success btn-block">
+                    Checkout
+                </a>
+            </div>
+        </div>
     </div>
+</div>
 
-    <a href="{% url 'cart:checkout' %}" class="btn btn-warning btn-block">
-        Checkout
-    </a>
+<section id="about" class="py-10">
+    <div class="container">
+        <div class=" px-12 py-2 bg-500 col-12 ">
+        <a href="{% url 'pages:map' %}" class="btn btn-success btn-block"><h4>我 們 實 體 精 問 店 的 位 置</h4></a>
+        </div>
     </div>
-</div>
-</div>
-</div>
+</section>
 
 {% endblock %}

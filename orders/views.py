@@ -52,13 +52,13 @@ def start_order(request):
     order.paid_amount = total_price
     order.paid=True
     # Send email
-    send_mail(
-        "Thank you for your purchase, Order id# " + str(order.id),
-        "There has been a purchase for the order id# " + str(order.id) + ". We will process your order soon.",
-        "cranerb7@gmail.com",
-        [order.email],
-        fail_silently=False,
-    )
+    # send_mail(
+    #     "Thank you for your purchase, Order id# " + str(order.id),
+    #     "There has been a purchase for the order id# " + str(order.id) + ". We will process your order soon.",
+    #     "cranerb7@gmail.com",
+    #     [order.email],
+    #     fail_silently=False,
+    # )
     order.save()
     
     for item in cart:

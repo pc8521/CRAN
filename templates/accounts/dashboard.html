@@ -19,22 +19,21 @@
     </div>
 </section>
 
-    <section id="showcase">
-        <div class="container-fluid py-4">
+        <section id="showcase">
+        <div class="container-fluid py-0">
             <div class="row">
                 <!-- Left Column - wishlist -->
                 <div class="col-md-12 col-lg-12 mb-4">
                     <div class="card wishlist-card">
                         {% if wishlist %}
-                        <div class="Wishlist-heading text-center">
+                        <div class="Wishlist-heading text-center" style="background-color: #ffc107;">
                             <div class="heading-content">
                                 <i class="fa-solid fa-tags fa-2xl" style="color: #ffc107;"></i>
                                 <h2 class="heading-text text-body">Your Wishlist</h2>
                             </div>
                         </div>
-                        <hr />
-                        <div class="card-content">
-                            <div class="row py-2 text-secondary m-2">
+                        <div class="card-content" style="background-color: rgba(243, 211, 151, 0.5)">
+                            <div class="row py-2 text-dark m-2">
                                 <div class="col-6">
                                     <i class="fa-solid fa-heart fa-xl" style="color: #ffc107;"></i> Product 
                                 </div>
@@ -44,7 +43,7 @@
                             </div>
 
                             {% for item in wishlist %}
-                            <div class="row py-2 text-secondary m-2">
+                            <div class="row py-2 text-dark m-2">
                                 <div class="col-6">
                                     <i class="fa-solid fa-check fa-sm" style="color: #ffc107;"></i> {{item.product}}
                                 </div>
@@ -94,16 +93,14 @@
                 <div class="col-md-12 col-lg-12 mb-4">
                     <div class="card history-card">
                         {% if orders %}
-                        <div class="History-heading text-center">
-                            <div class="history-content">
+                        <div class="History-heading  text-center" style="background-color: #ffc107;">
+                            <div class="heading-content">
                                 <i class="fa-solid fa-tags fa-2xl" style="color: #ffc107;"></i>
                                 <h2 class="heading-text text-body">Your History</h2>
                             </div>
                         </div>
-                        
-                        <hr />
-                        
-                        <div class="card-content">
+
+                        <div class="card-content" style="background-color: rgba(243, 211, 151, 0.5)">
                             
                             <div class="row py-2 text-secondary m-2">
                                 <div class="col-2">
@@ -145,7 +142,7 @@
                                             {% if orderitem.product.is_active %}
                                                 <button
                                                 href="#"
-                                                class="btn btn-primary"
+                                                class="btn btn-success"
                                                 hx-get="{% url 'accounts:reorder' order.id %}"
                                                 hx-target="#menu-cart-button"
                                                 hx-swap="outerHTML"
@@ -156,7 +153,7 @@
                                             {% else %}  
                                                 <button
                                                 href="#"
-                                                class="btn btn-primary"
+                                                class="btn btn-success"
                                                 hx-target="#menu-cart-button"
                                                 hx-swap="outerHTML"
                                                 disabled
@@ -203,7 +200,7 @@
     <div class="modal" id="confirmModal">
     <div class="modal-dialog text-body">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-warning">
                 <h5 class="modal-title">Reorder</h5>
                 <button class="close" data-dismiss="modal">
                     <span>&times;</span>

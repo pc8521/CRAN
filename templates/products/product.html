@@ -122,7 +122,7 @@
     </div>
 
     <div class="col-12">
-        <div class="row py-0 text-center text-justify text-dark"> 
+        <div class="row py-0 text-center text-justify text-dark bg-light"> 
             <h5> Description : {{product.description}} </h5> 
             </text-justify>
             <br />
@@ -141,9 +141,9 @@
     src={{product.category.category_img.url}}
     alt="Seller of the month"
     />
-    <div class="card-body">
+    <div class="card-body" style="background-color: rgba(243, 211, 151, 0.5)">
     <h5 class="card-title text-dark">Category</h5>
-    <h6 class="text-primary">{{product.category}}</h6>
+    <h5 class="fas fa-solid fa-receipt"style="color: #1850e8ff">{{product.category}}</h5>
     <hr />
 
     <!-- Reviews Section -->
@@ -153,11 +153,12 @@
                 <h5 class="reviews-heading">Reviews</h5>
             </div>
 
+        <div class="row p-3">
         {% if request.user.is_authenticated %}
         <form method="post" action="." class="custom-box">
             {% csrf_token %}
             <div>
-                <label>Rating</label><br>
+                <label>Rating : </label>
                 <select name="rating">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -166,9 +167,10 @@
                     <option value="5" selected>5</option>
                 </select>
             </div>
+        </div>
 
             <div>
-                <label>Comment</label><br>
+                <label>Comment : </label><br>
                 <textarea name="content" required></textarea>
             </div>
 

@@ -3,63 +3,84 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<div class="container mx-auto px-2">
-    <div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0">
-        <div class="products w-full lg:w-3/4 text-body">
-            <h1 class="mb-5 text-3xl">Checkout</h1>
-            <div class="w-full pr-6">
-                <div class="mb-6 p-6 bg-gray-100 rounded-xl">
-                    <h4 class="mb-5 uppercase text-lg">Collection information</h4>
-                    <div class="flex space-x-6">
-                        <div class="w-1/2 mb-4">
-                            <label class="inline-block mb-2">First name </label><br />
-                            <input name="first_name" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.first_name }}">
-                        </div>
-                        <div class="w-1/2 mb-4">
-                            <label class="inline-block mb-2">Last name</label><br />
-                            <input name="last_name" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.last_name }}">
-                        </div>
-                        <div class="mb-4">
-                            <label class="inline-block mb-2">Email</label><br />
-                            <input name="email" type="email" class="w-full p-5 rounded-xl" value="{{ request.user.email }}"> 
-                        </div>
-                        <div class="flex space-x-6">
-                            <div class="w-1/2 mb-4">
-                                <label class="inline-block mb-2"> Contact No </label><br />
-                                <input name="phone" type="text" class="w-full p-5 rounded-xl" value="{{ request.user.phone }}"> 
-                            </div>  
-                            <div class="w-1/2 mb-4">
-                                <label class="inline-block mb-2">Other</label><br />
-                                <input type="text" class="w-full p-5 rounded-xl">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-6 p-6 bg-gray-100 rounded-xl">
-                        <h4 class="mb-5 uppercase text-lg">Contact information</h4>
-                        <div class="mb-4">
-                            <label class="inline-block mb-2">Email</label><br />
-                            <input type="email" class="w-full p-5 rounded-xl" value="{{ request.user.email }}">
-                        </div>
-                        <div class="mb-6 p-6 bg-gray-100 rounded-xl">
-                            <h4 class="mb-2 uppercase text-lg">Payment information</h4>
-                            <input type="text" class="w-full p-5 rounded-xl">
-                        </div>
-                    </div>
-                    <div class="summary w-full w-1/4 p-6 bg-gray-100 rounded-xl mt-3">
-                        <h4 class="uppercase text-lg mb-2">Summary</h4>
-                        <div class="mb-6 flex justify-between">
-                            <span class="font-semibold">Total</span>
-                            <span>HK$ {{ cart.get_total_cost }}</span>
-                        </div>
-                    <button 
-                    onclick="buy(event)"
-                    href="{% url 'cart:checkout' %}" class="inline-block px-8 py-4 bg-warning text-body"
-                    >
-                        Confirm Checkout
-                    </button>
-                </div>
-            </div>
+<div class="max-w-6xl mx-auto flex flex-wrap items-start py-6 px-6 xl:px-0 text-dark text-center">
+    <div class="products w-full lg:w-3/4">
+        <h1 class="mb-3 text-3xl">Checkout</h1>
+
+<div class="w-full pr-6">
+    <div class="mb-6 p-6 bg-gray-100 rounded-xl text-center">
+        <h2 class="mb-4 uppercase text-lg">Collection information</h2>
+
+
+    <div class="flex space-x-6 text-dark" style="background-color: rgba(82, 235, 171, 0.5);">
+        <div class="row py-4">
+        <div class="w-1/2 col-4 mb-2">
+            <label class="inline-block mb-2">First name :</label>
+            <input name="first_name" type="text" class="w-full p-2 rounded-xl" value="{{ request.user.first_name }}">
+        </div>  
+
+        <div class="w-1/2 col-4 mb-4">
+            <label class="inline-block mb-2">Last name :</label>
+            <input name="last_name" type="text" class="w-full p-2 rounded-xl" value="{{ request.user.last_name }}">
         </div>
+
+        <div class="mb-4 col-4">
+            <label class="inline-block mb-2">Email :</label>
+            <input name="email" type="email" class="w-full p-2 rounded-xl" value="{{ request.user.email }}"> 
+        </div>  
+        </div>
+
+        <div class="flex space-x-6">
+        <div class="row py-2">
+        <div class="w-1/2 mb-4 col-4">
+            <label class="inline-block mb-2"> Contact No :</label>
+            <input name="phone" type="text" class="w-full p-2 rounded-xl" value="{{ request.user.phone }}"> 
+        </div>  
+
+        <div class="w-1/2 mb-4 col-8">
+            <label class="inline-block mb-2 align-top">Other :</label>
+            <input type="text" class="w-full p-5 col-10">
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<div class="mb-6 p-4 bg-gray-100 rounded-xl">
+    <div class="row py-5" style="background-color:rgba(243, 211, 151, 0.5);">
+        <h2 class="mb-3 uppercase text-lg col-6">Contact information</h2>
+        <div class="mb-3">
+        <label class="inline-block mb-2">Email : </label>
+        <input type="email" class="w-full p-5 rounded-xl" value="{{ request.user.email }}">
+        </div>
+    </div>
+
+<div class="mb-6 p-4 bg-gray-100 rounded-xl">
+    <div class="row py-5" style="background-color:rgba(82, 199, 235, 0.5);">
+        <h2 class="mb-5 uppercase text-lg col-6">Payment information</h2>
+        <input type="text" class="w-full p-5 rounded-xl"> 
+</div>
+
+<div class="summary w-full w-1/4 p-4 bg-gray-100 rounded-xl mt-3">
+    <div class="row py-5" style="background-color:rgba(240, 162, 238, 0.5);">
+    <h2 class="uppercase text-lg mb-4 col-6">Summary</h2>
+
+    <div class="mb-4 flex justify-between">
+        <h2><span class="font-semibold text-dark bg-light">Total : HK$ </span>
+        <span class="font-weight-bold text-dark bg-light">{{ cart.get_total_cost }}</span></h2>
+    </div>
+</div>
+</div>
+
+    <button
+    onclick="buy(event)"
+    class="inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 text-white col-10"
+    href="{% url 'cart:checkout' %}" class="inline-block px-8 py-4 rounded-xl bg-purple-500 hover:bg-purple-700 
+    text-dark "
+    style="background-color:rgba(242, 106, 9, 1)"
+    ><h1>
+        Confirm Checkout</h1>
+    </button>   
     </div>
 </div>
 

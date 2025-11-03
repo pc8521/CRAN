@@ -297,6 +297,11 @@
             </a>
             {% endif %}
         </div>
+        <div class="col-4 mt-0">
+            {% if product.reviews.exists %}
+            <strong>Rating: </strong> {{ product.get_rating }}/5.0
+            {% endif %}
+        </div>
     </div>
 
     <div class="col-12">
