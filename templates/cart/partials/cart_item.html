@@ -2,50 +2,60 @@
 
 {% if item %} 
 <div class="product mb-6 flex pr-6" id="cart-item-{{ item.product.id }}">
-        {% comment %} <a href="#" class="w-1/4">
+    {% comment %} <a href="#" class="w-1/4">
+        <img style="width: 80px; height: 80px; object-fit: cover;" 
+        class="hover:shadow-lg rounded-xl" src="{{ item.product.product_img.url }}">
+    </a> {% endcomment %}
+
+    <!-- Item Photo Column -->
+    <div class="row">
+        <div class="col-lg-2 col-12 mt-4 text-dark">
+            <a href="{% url 'products:product' item.product.id %}" class="w-1/4">
+            {% if item.product.product_img %}
             <img style="width: 80px; height: 80px; object-fit: cover;" 
-            class="hover:shadow-lg rounded-xl" src="{{ item.product.product_img.url }}">
-        </a> {% endcomment %}
-
-    <a href="{% url 'products:product' item.product.id %}" class="w-1/4">
-    {% if item.product.product_img %}
-    <img style="width: 80px; height: 80px; object-fit: cover;" 
-            class="hover:shadow-lg rounded-xl" 
-            src="{{ item.product.product_img.url }}">
-    {% else %}
-    <img style="width: 80px; height: 80px; object-fit: cover;" 
-            class="hover:shadow-lg rounded-xl" 
-            src="{% static 'img/default.jpg' %}">
-    {% endif %}
-    </a>
-
-    <div class="w-3/4 pl-6">
-        <div class="flex justify-between">
-            <a href="{% url 'products:product' item.product.id %}" class="text-lg">{{ item.product.name }}</a>
-            <br />
+                    class="hover:shadow-lg rounded-xl" 
+                    src="{{ item.product.product_img.url }}">
+            {% else %}
+            <img style="width: 80px; height: 80px; object-fit: cover;" 
+                    class="hover:shadow-lg rounded-xl" 
+                    src="{% static 'img/default.jpg' %}">
+            {% endif %}
+            </a>
+        </div>
+        <!-- Product Name Column -->
+        <div class="col-lg-4 col-12 mt-4 text-dark">
+            <span class="font-weight-bold">Product Name</span><br />
+            <a href="{% url 'products:product' item.product.id %}" class="text-lg">{{ item.product.name }}</a><br />
+        </div>
+        <!-- Subtotal Column -->
+        <div class="col-lg-4 col-12 mt-4 text-dark">
+            <span class="font-weight-bold">Total price</span><br />
             <span class="mb-6 pt-1 text-body">HK$ {{ item.total_price }}</span>
         </div>
-
-        <div class="quantity mt-6 flex items-center space-x-4">
-            <button 
-            class="bg-gray-100"
-            hx-get="{% url 'cart:update_cart' item.product.id 'decrement' %}"
-            hx-target="#cart-item-{{ item.product.id }}"
-            hx-swap="outerHTML"
-            >
-            -
-            </button>
-            <span class="border border-gray-300 p-2 text-body">{{ item.quantity }}</span>
-            <button
-            class="bg-gray-100"
-            hx-get="{% url 'cart:update_cart' item.product.id 'increment' %}"
-            hx-target="#cart-item-{{ item.product.id }}"
-            hx-swap="outerHTML"
-            >
-            +
-            </button>
+        <!-- Quantity Column -->
+        <div class="col-lg-2 col-12 mt-4 text-dark text-center">
+            <span class="font-weight-bold">Qty</span><br />
+            <div class="quantity mt-6 flex items-center space-x-4">
+                <button 
+                class="bg-gray-100"
+                hx-get="{% url 'cart:update_cart' item.product.id 'decrement' %}"
+                hx-target="#cart-item-{{ item.product.id }}"
+                hx-swap="outerHTML"
+                >
+                -
+                </button>
+                <span class="border border-gray-300 p-1 text-dark bg-light">{{ item.quantity }}</span>
+                <button
+                class="bg-gray-100"
+                hx-get="{% url 'cart:update_cart' item.product.id 'increment' %}"
+                hx-target="#cart-item-{{ item.product.id }}"
+                hx-swap="outerHTML"
+                >
+                +
+                </button>
+            </div>
         </div>
-    </div> 
+    </div>
 </div> 
 
 {% endif %}

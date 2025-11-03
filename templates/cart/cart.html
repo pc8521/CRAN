@@ -4,8 +4,9 @@
 {% block content %}
 {% include 'partials/_alert.html' %}
 
-<div class="container py-4">
-    <div class="row">
+<div class="container py-1">
+    <h1 class="font-weight-bold text-dark">Your Order List</h1>
+    <div class="row align-items-start" style="background-color: rgba(243, 211, 151, 0.5)">
         <div class="col-lg-9 col-12">
             {% for item in cart %}
             {% include 'cart/partials/cart_item.html' %}
@@ -28,7 +29,7 @@
                     </span></h5>
                 </div>
                 <br />
-                <a href="{% url 'cart:checkout' %}" class="btn btn-success btn-block">
+                <a href="{% url 'cart:checkout' %}" class="btn btn-primary btn-block">
                     Checkout
                 </a>
             </div>
