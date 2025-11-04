@@ -1,6 +1,19 @@
 id,name,description,category_img
-4,清潔用品,,../static/img/default.jpg
-5,廚房用品,,../static/img/default.jpg
-6,居家收納,,../static/img/default.jpg
-7,個人護理,,../static/img/default.jpg
-12,Mobile Phones,Mobile Phones,../static/img/default.jpg
+15,beauty,,products/default.jpg
+6,beverages,"Beverages are a vibrant tapestry of flavors and sensations that quench thirst and elevate experiences, ranging from invigorating coffees and teas to refreshing juices and cocktails. They serve as both a source of nourishment and a catalyst for social connection, bringing people together to savor each sip and create memorable moments.",photos/2025/10/18/cat_drinks.png
+16,fragrances,,products/default.jpg
+17,furniture,,products/default.jpg
+18,groceries,,products/default.jpg
+19,fashion,fashion,products/default.jpg
+20,computer,computer,products/default.jpg
+21,watch,watch,products/default.jpg
+22,tv,tv,products/default.jpg
+23,motocycle,motorcycle,products/default.jpg
+24,cat food,cat food,products/default.jpg
+10,computer accessories,"Computer accessories are a versatile range of tools that enhance functionality and user experience, including keyboards, mice, monitors, and external storage devices. These essential additions not only streamline tasks and improve productivity but also bring a touch of personalization and style to the digital workspace.",photos/2025/11/02/meletrixkeyboard.png
+9,cycling gear,"Elevate Your Ride with Premium Cycling Gear
+
+Discover our top-quality cycling gear designed for comfort and performance. From lightweight jerseys to breathable shorts and durable shoes, our collection enhances every ride. With moisture-wicking materials and stylish designs, you can express your unique personality while enjoying the thrill of cycling. Gear up and ride like never before!",photos/2025/11/02/cat_cg1.png
+8,fishing gear,"Fishing gear comprises a diverse array of tools and equipment designed to enhance the art of angling, from sturdy rods and reels to specialized tackle and bait. This essential kit not only equips enthusiasts for the thrill of the catch but also fosters a deep connection with nature, turning each outing into an adventure of patience and skill.",photos/2025/10/18/cat_fg5.jpeg
+7,stationary,"Stationery encompasses a curated collection of tools that inspire creativity and organization, from elegant notebooks and fine pens to vibrant markers and specialized papers. These essential items not only facilitate communication and expression but also elevate the art of writing and crafting, turning everyday tasks into moments of joy and beauty.",photos/2025/10/18/cat_stat1.jpeg
+5,snacks,"Snacks are delightful morsels that bridge the gap between meals, offering a tantalizing array of flavors and textures that invite moments of indulgence. Whether sweet or savory, they cater to every palate and celebrate the joy of taste in its most accessible form.",photos/2025/10/18/cat_snacks.png

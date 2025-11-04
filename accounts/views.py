@@ -51,13 +51,13 @@ def register(request):
         )
         user.save()
         # Send email
-        send_mail(
-            "Registration for " + user.get_full_name(),
-            "There has been a registration for " + user.get_full_name() + ". Sign and enjoy shopping.",
-            "cranerb7@gmail.com",
-            [user.email],
-            fail_silently=False,
-        )
+        # send_mail(
+        #     "Registration for " + user.get_full_name(),
+        #     "There has been a registration for " + user.get_full_name() + ". Sign and enjoy shopping.",
+        #     "cranerb7@gmail.com",
+        #     [user.email],
+        #     fail_silently=False,
+        # )
         messages.success(request, 'You are now registered and can log in')
         return redirect('accounts:login')
     else:
