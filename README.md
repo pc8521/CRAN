@@ -1,3 +1,9 @@
+UML
+/resources/UML/
+
+presentations
+/resources/cran_ppt_v5.pdf
+
 首次git push到github CRAN:
 @project folder (branch: main)
 (假設已commit, 箭咀綠色)

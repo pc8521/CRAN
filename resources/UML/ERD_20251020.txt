@@ -1,0 +1,160 @@
+@startuml
+' 設定樣式
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor #F0F8FF
+    BorderColor #4682B4
+}
+
+' ==============================
+' Models 定義（模擬資料表）
+' ==============================
+
+class "auth.User" as User {
+  + id : int <<PK>>
+  --
+  username : str
+  email : str
+  first_name : str
+  last_name : str
+  is_active : bool
+  date_joined : datetime
+}
+
+class "accounts.UserProfile" as UserProfile {
+  + user_id : int <<PK, FK>>
+  --
+  phone_number : str
+  address : str
+}
+
+class "products.Category" as Category {
+  + id : int <<PK>>
+  --
+  name : str
+  description : text
+}
+
+class "products.Product" as Product {
+  + id : int <<PK>>
+  --
+  sku : str
+  name : str
+  description : text
+  price : decimal
+  stock : int
+  category_id : int <<FK>>
+  is_active : bool
+  tag : str
+  brand : str
+  product_img : image
+  product_img1 : image
+  product_img2 : image
+  product_img3 : image
+  product_img4 : image
+  product_img5 : image
+  created_at : datetime
+}
+
+class "stores.Store" as Store {
+  + id : int <<PK>>
+  --
+  name : str
+  address : str
+  phone : str
+  email : str
+  opening_hours : str
+  is_active : bool
+}
+
+class "cart.CartItem" as CartItem {
+  + id : int <<PK>>
+  --
+  user_id : int <<FK>>
+  product_id : int <<FK>>
+  quantity : int
+  added_at : datetime
+}
+
+class "wishlist.WishlistItem" as WishlistItem {
+  + id : int <<PK>>
+  --
+  user_id : int <<FK>>
+  product_id : int <<FK>>
+  added_at : datetime
+}
+
+class "orders.Order" as Order {
+  + id : int <<PK>>
+  --
+  user_id : int <<FK>>
+  store_id : int <<FK>>
+  total_amount : decimal
+  status : str
+  order_date : datetime
+}
+
+class "orders.OrderItem" as OrderItem {
+  + id : int <<PK>>
+  --
+  order_id : int <<FK>>
+  product_id : int <<FK>>
+  quantity : int
+  price_at_order : decimal
+}
+
+class "notifications.Notification" as Notification {
+  + id : int <<PK>>
+  --
+  user_id : int <<FK>>
+  product_id : int <<FK>>
+  title : str
+  message : text
+  type : str
+  sent_at : datetime
+  is_read : bool
+}
+
+' ==============================
+' 關聯（Associations）
+' ==============================
+
+User ||--|| UserProfile : "1-1"
+User ||--o{ CartItem : "1-N"
+User ||--o{ WishlistItem : "1-N"
+User ||--o{ Order : "1-N"
+User ||--o{ Notification : "1-N"
+
+Category ||--o{ Product : "1-N"
+
+Store ||--o{ Order : "1-N"
+
+Product ||--o{ CartItem : "1-N"
+Product ||--o{ WishlistItem : "1-N"
+Product ||--o{ OrderItem : "1-N"
+Product ||--o{ Notification : "1-N"
+
+Order ||--o{ OrderItem : "1-N"
+
+' ==============================
+' 註解
+' ==============================
+
+note top of User
+  Django 預設 User 模型
+end note
+
+note right of CartItem
+  購物車內容，登入後持久化
+end note
+
+note right of Order
+  若 store_id 不為 null，
+  表示「到店取貨」
+end note
+
+note bottom of Notification
+  可關聯特定商品（如到貨通知）
+end note
+
+@enduml
