@@ -1,8 +1,11 @@
-UML
+UML:
+```bash
 /resources/UML/
-
-presentations
+```
+presentations:
+```bash
 /resources/cran_ppt_v5.pdf
+```
 
 首次git push到github CRAN:
 @project folder (branch: main)
